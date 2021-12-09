@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "eslint": "^8.3.0",
+    "eslint": "^7.11.0",
     "firebase": "^9.5.0",
     "fuzzy-search": "^3.2.1",
     "react": "^17.0.2",

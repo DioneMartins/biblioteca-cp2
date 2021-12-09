@@ -1,0 +1,33 @@
+.cardWrapper{
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cardWrapper p{
+  margin: 0px;
+  color: #156ca2;
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cardTitle{
+  font-size: 20px;
+}
+
+.cardAuthor{
+  font-size: 14px;
+}
+
+@media (max-width: 1080px){
+  .cardWrapper{
+    width: 70vw;
+    height: 20vh;
+  }
+}
