@@ -1,9 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { getBookList } from '../../api/api';
 import BookCardItem from './bookCardItem/BookCardItem';
-import {
-  bookCardWrapper,
-} from './BookCard.module.css';
+import { bookCardWrapper } from './BookCard.module.css';
 
 export default function BookCard() {
   const [bookListData, setBookListData] = useState([]);
@@ -26,19 +24,21 @@ export default function BookCard() {
 
   return (
     <div className={bookCardWrapper}>
-      {isLoading ? 'Carregando' : bookListData.map(({ afn, aln, notes, quant, title }, index) => {
-        return (
-          <BookCardItem
-            key={title}
-            firstName={afn}
-            lastName={aln}
-            notes={notes}
-            quant={quant}
-            title={title}
-            bookNumber={index}
-          />
-        );
-      })}
+      {isLoading
+        ? 'Carregando'
+        : bookListData.map(({ afn, aln, notes, quant, title }, index) => {
+            return (
+              <BookCardItem
+                key={title}
+                firstName={afn}
+                lastName={aln}
+                notes={notes}
+                quant={quant}
+                title={title}
+                bookNumber={index}
+              />
+            );
+          })}
     </div>
   );
 }
