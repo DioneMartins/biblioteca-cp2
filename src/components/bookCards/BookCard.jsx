@@ -26,7 +26,7 @@ export default function BookCard() {
 
   return (
     <div className={bookCardWrapper}>
-      {isLoading ? null : bookListData.map(({ afn, aln, notes, quant, title }, index) => {
+      {isLoading ? 'Carregando' : bookListData.map(({ afn, aln, notes, quant, title }, index) => {
         return (
           <BookCardItem
             key={title}
