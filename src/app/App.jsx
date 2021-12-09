@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import BookCard from '../components/bookCards/BookCard';
+import Router from '../router/Router';
 import './App.css';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <BookCard />
+      <Router />
     </BrowserRouter>
   );
 };
