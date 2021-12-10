@@ -1,8 +1,8 @@
 .headerWrapper {
   background-color: #105885;
-  width: 100vw;
-  height: 15vh;
-  padding: 10px 20px 5px 20px;
+  width: 90vw;
+  height: 12%;
+  padding: 4% 2vw 4% 8vw;
   display: grid;
   grid-template-columns: 20fr 60fr;
   column-gap: 20px;
@@ -11,12 +11,12 @@
 }
 
 .headerLogo {
-  height: 80%;
+  width: 90%;
 }
 
 .headerImageWrapper {
   flex-grow: 1;
-  width: 100%;
+  text-align: center;
 }
 
 .headerTitleWrapper {

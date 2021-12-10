@@ -1,7 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
 body {
   background-color: #e6eef4;
-  font-family: Arial;
-  width: 100vw;
 }
 
 p {
