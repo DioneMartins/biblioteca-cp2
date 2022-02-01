@@ -6,7 +6,7 @@ export default function Login() {
     <div>
       <Navbar />
       <Unfinished
-        pageName="Futuro componente de login. Prioridade: 6"
+        pageName="Futuro componente de login."
         message={[
           'Login só está disponível para administradores',
           'Usuário',
@@ -15,6 +15,8 @@ export default function Login() {
           'Input',
           'Button: Login',
         ]}
+        respDev="Argo"
+        devOrder="In Development"
       />
     </div>
   );

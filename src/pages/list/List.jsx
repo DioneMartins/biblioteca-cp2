@@ -6,13 +6,17 @@ export default function List() {
     <div>
       <Navbar />
       <Unfinished
-        pageName="Futuro componente de header. Prioridade: 2"
+        pageName="Futuro componente de header."
         message={['Aleatorização', 'Contagem']}
+        respDev="Leo e Argo"
+        devOrder="3"
       />
       <BookCard />
       <Unfinished
-        pageName="Futuro componente de paginação. Prioridade: 5"
+        pageName="Futuro componente de paginação."
         message={['Itens de paginação']}
+        respDev="Leo e Argo"
+        devOrder="2"
       />
     </div>
   );
