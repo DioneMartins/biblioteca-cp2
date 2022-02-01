@@ -18,7 +18,7 @@ const base_url = 'https://web-biblioteca-cp2tjk2-default-rtdb.firebaseio.com/';
 
 const database = getDatabase(app, base_url);
 
-export function getBookList() {
+export async function getBookList() {
   const reference = ref(database);
   return get(child(reference, '/books/results'))
     .then((snapshot) => {

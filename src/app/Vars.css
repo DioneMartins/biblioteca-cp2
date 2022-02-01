@@ -1,0 +1,41 @@
+:root{
+  /*VARIÁVEIS DE COR*/
+  --defaultPhotos: #EEEEEE;
+  --whiteBlue: #E6EEF4;
+  --homeIcon: #E5F1F9;
+  --navbarButton: #8DCBF1;
+  --grayBlue: #8CA2B3;
+  --editPencil: #7AAAC8;
+  --searchIcon: #5D99BE;
+  --listHeader: #569DCA;
+  --strongBlue: #156CA2;
+  --headerAndFooter: #105885;
+}
+
+/*
+  Cores e uso:
+    #EEEEEE FOTOS DEFAULT
+    #E6EEF4 FUNDO, BARRA DE PESQUISA E NÚMERO DE CARDS
+    #E5F1F9 CASA SÍMBOLO
+    #8DCBF1 BOTÃO NAVBAR
+    #8CA2B3 PAGINAÇÃO NÚMEROS E ESCRITA NO LOGIN
+    #7AAAC8 LÁPIS
+    #5D99BE PESQUISA SÍMBOLO
+    #569DCA CABEÇALHO LISTA
+    #156CA2 NAVBAR E COR DAS LETRAS NOS CARDS
+    #105885 CABEÇALHO E RODAPÉ
+
+  //////////////////////////////////////////////////////
+
+  DECLARANDO:
+    :root{
+      --varName: #ColorCode;
+    }
+
+  //////////////////////////////////////////////////////
+
+  USANDO:
+    .class{
+      background-color: var(--nomeDaVar);
+    }
+*/
