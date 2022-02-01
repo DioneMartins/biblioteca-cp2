@@ -4,6 +4,10 @@
   font-family: Arial;
 }
 
+:root{
+  overflow-x: hidden;
+}
+
 body {
   background-color: #e6eef4;
 }
