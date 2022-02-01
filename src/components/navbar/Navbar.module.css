@@ -1,0 +1,70 @@
+.navbarWrapper {
+  background-color: #156CA2;
+  height: 5%;
+  width: 98vw;
+  display: grid;
+  padding: 2% 1vw 2% 1vw;
+  grid-template-columns: 1fr 5fr 6fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.navbarHome {
+  width: 80%;
+}
+
+.navbarButtonWrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.navbarButton {
+  background-color: #8DCBF1;
+  color: white;
+  width: 80%;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  margin: 0px 5px 0px 5px;
+}
+
+.navbarButton p {
+  margin: 4% 0px 4% 0px;
+}
+
+.navbarSearchWrapper {
+  width: 85%;
+  border-radius: 12px;
+  background-color: #E6EEF4;
+  height: 80%;
+  padding: 1% 5% 1% 5%;
+}
+
+.navbarSearch {
+  position: relative;
+  background-color: transparent;
+  border: hidden;
+  bottom: 3px;
+  width: 85%;
+  color: #5D99BE;
+  font-weight: bold;
+}
+
+.navbarSearch:focus {
+  outline: none;
+}
+
+.navbarSearchButton {
+  position: relative;
+  background-color: transparent;
+  border: hidden;
+  left: 6px;
+  top: 1px;
+  width: 12%;
+}
+
+.navbarSearchIcon {
+  width: 100%;
+}

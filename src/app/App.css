@@ -1,4 +1,26 @@
-html {
-  background-color: #e6eef4;
-  width: 100vw;
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
 }
+
+body {
+  background-color: #e6eef4;
+}
+
+p {
+  margin: 0px;
+}
+/*Colors:
+#105885 CABEÇALHO E RODAPÉ
+#156CA2 NAVBAR E COR DAS LETRAS NOS CARDS
+#8DCBF1 BOTÃO NAVBAR
+#E6EEF4 FUNDO E BARRA DE PESQUISA
+#7AAAC8 LÁPIS
+#EEEEEE FOTOS DEFAULT
+#E5F1F9 CASA SÍMBOLO
+#5D99BE PESQUISA SÍMBOLO
+#569DCA CABEÇALHO LISTA
+#E6EEF4 NÚMERO DE CARDS
+#8CA2B3 PAGINAÇÃO NÚMEROS E ESCRITA NO LOGIN
+*/

@@ -1,5 +1,4 @@
 .cardWrapper{
-  margin: 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -10,9 +9,7 @@
 }
 
 .cardWrapper p{
-  margin: 0px;
   color: #156ca2;
-  font-family: Arial;
   font-weight: bold;
   text-align: center;
 }
