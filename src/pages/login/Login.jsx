@@ -8,13 +8,7 @@ export default function Login() {
       <LoginComponent />
       <Unfinished
         pageName="Futuro componente de login."
-        message={[
-          'Login só está disponível para administradores',
-          'Usuário',
-          'Input',
-          'Senha',
-          'Button: Login',
-        ]}
+        message={['Login só está disponível para administradores']}
         respDev="Argo"
         devOrder="In Development"
       />
