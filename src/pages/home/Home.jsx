@@ -1,11 +1,12 @@
 import React from 'react';
-import { Header, Navbar, Unfinished } from '../../components';
+import { Header, Navbar, HomeCards, Unfinished } from '../../components';
 
 export default function Home() {
   return (
     <div>
       <Header />
       <Navbar />
+      <HomeCards />
       <Unfinished
         pageName="DEV INFO: MISSING SEARCH."
         message={['Last in production line']}
