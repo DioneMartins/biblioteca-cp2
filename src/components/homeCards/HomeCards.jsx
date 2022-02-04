@@ -36,11 +36,12 @@ export default function HomeCards() {
         </div>
       )}
       {!isLoading && !failed && (
-        initCardsData.map(({ cardTitle, img, link, priority }, index) => {
-          return(
-            <HomeCardItem />
-          );
-        }))}
+        <>
+          {initCardsData.map(({ cardTitle, img, link, priority }, index) => {
+            return <HomeCardsItem />;
+          })}
+        </>
+      )}
     </>
   );
 }
