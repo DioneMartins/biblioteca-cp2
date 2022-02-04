@@ -36,7 +36,7 @@ export async function getBookList() {
 
 export async function getInitCards() {
   const reference = ref(database);
-  return get(child(reference, '/displayInfo/homeCards'))
+  return get(child(reference, '/displayInfo/homeCards/results'))
     .then((snapshot) => {
       if (snapshot.exists()) {
         const result = snapshot.val();
