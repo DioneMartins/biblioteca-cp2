@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getBookList } from '../../api/api';
 import BookCardItem from './bookCardItem/BookCardItem';
-import { bookCardWrapper } from './BookCard.module.css';
+import styles from './BookCard.module.css';
+
+const { bookCardWrapper } = styles;
 
 export default function BookCard() {
   const [bookListData, setBookListData] = useState([]);
