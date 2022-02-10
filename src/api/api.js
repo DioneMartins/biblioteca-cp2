@@ -28,18 +28,4 @@ export async function getBookList() {
   } finally {
     return result;
   }
-
-  /*const reference = ref(database);
-  return get(child(reference, '/books/results'))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const result = snapshot.val();
-        return result;
-      } else {
-        return 'No data available';
-      }
-    })
-    .catch(() => {
-      return 'Error fetching, try again';
-    });*/
 }
