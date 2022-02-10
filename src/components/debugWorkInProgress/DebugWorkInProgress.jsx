@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { wrapper, compholder, future, itemDiv, itemP } from './DebugWorkInProgress.module.css';
+import styles from './DebugWorkInProgress.module.css';
+
+const { wrapper, compholder, future, itemDiv, itemP } = styles;
 
 export default function DebugWorkInProgress({ pageName, message, respDev, devOrder }) {
   return (

@@ -1,11 +1,8 @@
 import React from 'react';
 import logoCP2 from '../../assets/logo.png';
-import {
-  headerWrapper,
-  headerImageWrapper,
-  headerLogo,
-  headerTitleWrapper,
-} from './Header.module.css';
+import styles from './Header.module.css';
+
+const { headerWrapper, headerImageWrapper, headerLogo, headerTitleWrapper } = styles;
 
 export default function Header() {
   return (

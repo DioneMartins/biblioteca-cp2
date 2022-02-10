@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { cardWrapper, cardTitle, cardAuthor } from './BookCardItem.module.css';
+import styles from './BookCardItem.module.css';
+
+const { cardWrapper, cardTitle, cardAuthor } = styles;
 
 export default function BookCardItem({ firstName, lastName, notes, quant, title, bookNumber }) {
   return (
