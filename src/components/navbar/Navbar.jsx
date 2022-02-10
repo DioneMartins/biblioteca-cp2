@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import homeSVG from '../../assets/dynnamitt_home.svg';
 import searchSVG from '../../assets/Simpleicons_Interface_magnifier.svg';
-import {
+import styles from './Navbar.module.css';
+
+const {
   navbarWrapper,
   navbarHome,
   navbarButtonWrapper,
@@ -11,7 +13,7 @@ import {
   navbarSearch,
   navbarSearchButton,
   navbarSearchIcon,
-} from './Navbar.module.css';
+} = styles;
 
 export default function Navbar() {
   return (
