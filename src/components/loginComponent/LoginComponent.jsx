@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { saveUser } from '../../api/login';
+import { getUserName } from '../../api/api';
 import styles from './LoginComponent.module.css';
 
 const {
@@ -20,13 +22,24 @@ export default function LoginComponent() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, userEmail, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
+        handleLogin(user);
       })
       .catch((error) => {
         const errorCode = error.code;
         pickErrorMessage(errorCode);
       });
+  }
+
+  async function handleLogin(user) {
+    let userName = '';
+    try {
+      userName = await getUserName(user.uid);
+    } catch (e) {
+      userName = 'Error!';
+    } finally {
+      saveUser(user.uid, userName, false);
+    }
   }
 
   function pickErrorMessage(codedError) {

@@ -9,12 +9,21 @@ const App = () => {
   useEffect(() => {
     checkUserTime();
 
-    function deleteUserIfDontKeep() {
-      if (!getUserAttribute('keepLogin')) deleteUser();
-    }
+    const warnUser = (event) => {
+      if (!getUserAttribute('keepLogin')) {
+        event.preventDefault();
+        event.returnValue = '';
+        return '';
+      }
+    };
 
-    window.addEventListener('beforeunload', deleteUserIfDontKeep());
-    return () => window.removeEventListener('beforeunload', deleteUserIfDontKeep());
+    const deleteUserIfDontKeep = (e) => {
+      deleteUser();
+    };
+
+    window.addEventListener('beforeunload', warnUser);
+    window.addEventListener('unload', deleteUserIfDontKeep);
+    return () => window.removeEventListener('beforeunload', warnUser);
   }, []);
 
   return (

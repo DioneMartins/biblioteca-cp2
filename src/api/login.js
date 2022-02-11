@@ -1,10 +1,10 @@
-export function saveUser(uAuth, uName, keep) {
+export function saveUser(uUID, uName, keep) {
   const ttl = keep ? 336 : 2;
   const expiryDate = new Date();
   expiryDate.setHours(expiryDate.getHours() + ttl);
 
   const item = {
-    userAuth: uAuth,
+    userUID: uUID,
     userName: uName,
     keepLogin: keep,
   };
@@ -38,11 +38,9 @@ function expandUserTime() {
 export function getUserAttribute(desiredAttribute) {
   const user = localStorage.getItem('curLogin');
 
-  if (!user) {
+  if (!localStorage.getItem('curLogin')) {
     return null;
   }
-
-  const returnItem = JSON.parse(user);
 
   const now = new Date();
   if (now.getTime() > localStorage.getItem('loginExpiry')) {
@@ -50,7 +48,25 @@ export function getUserAttribute(desiredAttribute) {
     return null;
   }
 
-  return returnItem.desiredAttribute;
+  let returnItem = '';
+  const userItem = JSON.parse(user);
+
+  switch (desiredAttribute) {
+    default:
+      returnItem = null;
+      break;
+    case 'userUID':
+      returnItem = userItem.userUID;
+      break;
+    case 'userName':
+      returnItem = userItem.userName;
+      break;
+    case 'keepLogin':
+      returnItem = userItem.keepLogin;
+      break;
+  }
+
+  return returnItem;
 }
 
 // Code adapted from:
