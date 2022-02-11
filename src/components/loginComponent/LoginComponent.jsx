@@ -14,7 +14,7 @@ const {
   loginWarning,
 } = styles;
 
-export default function LoginComponent() {
+export default function LoginComponent(props) {
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -41,6 +41,7 @@ export default function LoginComponent() {
       userName = 'Error!';
     } finally {
       saveUser(user.uid, userName, keepLogin);
+      props.changer('Log in');
     }
   }
 

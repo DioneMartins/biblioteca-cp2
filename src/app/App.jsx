@@ -18,7 +18,7 @@ const App = () => {
     };
 
     const deleteUserIfDontKeep = (e) => {
-      deleteUser();
+      if (checkIfUserExists() && !getUserAttribute('keepLogin')) deleteUser();
     };
 
     window.addEventListener('beforeunload', warnUser);
