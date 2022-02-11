@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Router from '../router/Router';
-import { deleteUser, checkUserTime, getUserAttribute } from '../api/login';
+import { deleteUser, checkUserTime, checkIfUserExists, getUserAttribute } from '../api/login';
 import './App.css';
 import './Vars.css';
 
@@ -10,7 +10,7 @@ const App = () => {
     checkUserTime();
 
     const warnUser = (event) => {
-      if (!getUserAttribute('keepLogin')) {
+      if (checkIfUserExists() && !getUserAttribute('keepLogin')) {
         event.preventDefault();
         event.returnValue = '';
         return '';

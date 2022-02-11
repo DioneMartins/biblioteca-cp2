@@ -18,6 +18,11 @@ export function deleteUser() {
   if (localStorage.getItem('loginExpiry')) localStorage.removeItem('loginExpiry');
 }
 
+export function checkIfUserExists() {
+  if (localStorage.getItem('curLogin')) return true;
+  else return false;
+}
+
 export function checkUserTime() {
   if (localStorage.getItem('curLogin') && localStorage.getItem('loginExpiry')) {
     const expiry = localStorage.getItem('loginExpiry');

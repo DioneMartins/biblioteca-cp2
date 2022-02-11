@@ -9,6 +9,7 @@ const {
   loginMessage,
   loginEmailInput,
   loginPasswordInput,
+  loginKeep,
   loginButton,
   loginWarning,
 } = styles;
@@ -17,6 +18,7 @@ export default function LoginComponent() {
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [keepLogin, setKeepLogin] = useState(false);
 
   function handleLoginRequest() {
     const auth = getAuth();
@@ -38,7 +40,7 @@ export default function LoginComponent() {
     } catch (e) {
       userName = 'Error!';
     } finally {
-      saveUser(user.uid, userName, false);
+      saveUser(user.uid, userName, keepLogin);
     }
   }
 
@@ -81,6 +83,15 @@ export default function LoginComponent() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <div className={loginKeep}>
+        <input
+          id="keepLog"
+          type="checkbox"
+          checked={keepLogin}
+          onChange={(e) => setKeepLogin(e.target.checked)}
+        />
+        <label htmlFor="keepLog">Lembrar de mim</label>
+      </div>
       <button className={loginButton} onClick={(e) => handleLoginRequest()}>
         Login
       </button>

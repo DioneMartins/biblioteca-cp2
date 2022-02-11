@@ -13,7 +13,14 @@
   color: var(--grayBlue);
 }
 
-.loginWrapper input{
+.loginMessage{
+  font-size: 16px;
+  color: var(--grayBlue);
+  margin-bottom: 7vh;
+}
+
+.loginEmailInput{
+  margin-bottom: 5vh;
   background-color: white;
   border: hidden;
   width: 80%;
@@ -25,18 +32,32 @@
   border-radius: 20px;
 }
 
-.loginMessage{
-  font-size: 16px;
-  color: var(--grayBlue);
-  margin-bottom: 7vh;
-}
-
-.loginEmailInput{
-  margin-bottom: 5vh;
-}
-
 .loginPasswordInput{
   margin-bottom: 3vh;
+  background-color: white;
+  border: hidden;
+  width: 80%;
+  padding: 10px 5px 10px 5px;
+  color: var(--searchIcon);
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: lowercase;
+  border-radius: 20px;
+}
+
+.loginKeep {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 10px;
+}
+
+.loginKeep label{
+  margin-left: 5px;
+  font-size: 14px;
 }
 
 .loginButton{
