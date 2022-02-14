@@ -10,7 +10,7 @@ export function saveUser(uUID, uName, keep) {
   };
 
   localStorage.setItem('curLogin', JSON.stringify(item));
-  localStorage.setItem('loginExpiry', expiryDate);
+  localStorage.setItem('loginExpiry', expiryDate.getTime());
 }
 
 export function deleteUser() {
@@ -36,7 +36,7 @@ function expandUserTime() {
   if (localStorage.getItem('curLogin') && localStorage.getItem('loginExpiry')) {
     const newExpiryDate = new Date();
     newExpiryDate.setHours(newExpiryDate.getHours() + 336);
-    localStorage.setItem('loginExpiry', newExpiryDate);
+    localStorage.setItem('loginExpiry', newExpiryDate.getTime());
   } else deleteUser();
 }
 
