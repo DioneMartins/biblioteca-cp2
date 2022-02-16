@@ -2,10 +2,6 @@
   margin-top: 2%;
   width: 100vw;
   height: 60%;
-  display: grid;
-  grid-template-columns: 1fr, 2fr, 1fr;
-  grid-template-rows: 1fr, 2fr, 1fr;
-  justify-items: center;
 }
 
 .loggedWelcome{
@@ -40,4 +36,13 @@
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media(min-width: 1080px){
+  .loggedWrapper{
+    display: grid;
+    grid-template-columns: 1fr, 2fr, 1fr;
+    grid-template-rows: 1fr, 2fr, 1fr;
+    justify-items: center;
+  }
 }
