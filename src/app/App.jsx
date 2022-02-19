@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Router from '../router/Router';
 import { deleteUser, checkUserTime, checkIfUserExists, getUserAttribute } from '../api/login';
+import { getAuth, signOut } from 'firebase/auth';
 import './App.css';
 import './Vars.css';
 
@@ -18,7 +19,16 @@ const App = () => {
     };
 
     const deleteUserIfDontKeep = (e) => {
-      if (checkIfUserExists() && !getUserAttribute('keepLogin')) deleteUser();
+      if (checkIfUserExists() && !getUserAttribute('keepLogin')) {
+        const auth = getAuth();
+        signOut(auth)
+          .then(() => {
+            deleteUser();
+          })
+          .catch((error) => {
+            return '';
+          });
+      }
     };
 
     window.addEventListener('beforeunload', warnUser);

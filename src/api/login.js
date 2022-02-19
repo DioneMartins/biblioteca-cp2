@@ -1,3 +1,5 @@
+import { getAuth, signOut } from 'firebase/auth';
+
 export function saveUser(uUID, uName, keep) {
   const ttl = keep ? 336 : 2;
   const expiryDate = new Date();
@@ -14,8 +16,20 @@ export function saveUser(uUID, uName, keep) {
 }
 
 export function deleteUser() {
-  if (localStorage.getItem('curLogin')) localStorage.removeItem('curLogin');
-  if (localStorage.getItem('loginExpiry')) localStorage.removeItem('loginExpiry');
+  if (localStorage.getItem('curLogin')) {
+    if (localStorage.getItem('loginExpiry')) {
+      localStorage.removeItem('loginExpiry');
+      localStorage.removeItem('curLogin');
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          deleteUser();
+        })
+        .catch((error) => {
+          return '';
+        });
+    }
+  }
 }
 
 export function checkIfUserExists() {

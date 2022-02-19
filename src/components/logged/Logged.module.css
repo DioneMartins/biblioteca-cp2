@@ -1,10 +1,5 @@
-.loggedWrapper{
-  margin-top: 2%;
-  width: 100vw;
-  height: 60%;
-}
-
 .loggedWelcome{
+  align-self: center;
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -23,26 +18,46 @@
   font-weight: bold;
 }
 
-.loggedButton{
-  grid-column: 3;
-  grid-row: 1;
-  background-color: var(--navbarButton);
+.loggedWrapper button{
   border: hidden;
-  width: 10vw;
-  padding: 5px 0px 5px 0px;
-  color: white;
-  font-size: 18px;
-  text-align: center;
+  cursor: pointer;
   border-radius: 8px;
   text-decoration: none;
-  cursor: pointer;
+  color: white;
+  width: 75%;
+  font-size: 18px;
+  text-align: center;
+  height: 50%;
+  align-self: center;
+}
+
+.loggedButton{
+  background-color: var(--navbarButton);
+  grid-column: 4;
+  grid-row: 1;
+  padding: 5px 0px 5px 0px;
+}
+
+.loggedChangeName{
+  grid-column: 1;
+  grid-row: 3;
+  background-color: var(--changeInfoButton);
+}
+
+.loggedChangePassword{
+  grid-column: 4;
+  grid-row: 3;
+  background-color: var(--changeInfoButton);
 }
 
 @media(min-width: 1080px){
   .loggedWrapper{
+    width: 94vw;
+    margin: 2% 3vw 0 3vw;
+    height: 50vh;
     display: grid;
-    grid-template-columns: 1fr, 2fr, 1fr;
-    grid-template-rows: 1fr, 2fr, 1fr;
+    grid-template-columns: 2fr, 1fr, 1fr, 2fr;
+    grid-template-rows: 1fr, 1fr, 2fr;
     justify-items: center;
   }
 }

@@ -1,5 +1,14 @@
 import { initializeApp } from 'firebase/app';
-import { collection, query, orderBy, getDocs, getFirestore, doc, getDoc } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAFeKZUfV5XBuvnTyC8MyqDRauB5wUQyaU',
@@ -45,5 +54,24 @@ export async function getUserName(userUID) {
     result = 'Erro';
   } finally {
     return result;
+  }
+}
+
+export async function changeName(userUID, desiredName) {
+  try {
+    const docRef = doc(database, 'users', userUID);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      await updateDoc(docRef, {
+        name: desiredName,
+      });
+    } else {
+      return '';
+    }
+  } catch (e) {
+    return '';
+  } finally {
+    return '';
   }
 }
