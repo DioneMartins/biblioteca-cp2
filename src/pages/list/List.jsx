@@ -8,14 +8,14 @@ export default function List() {
       <Unfinished
         pageName="Futuro componente de header."
         message={['Aleatorização', 'Contagem']}
-        respDev="Leo e Argo"
+        respDev="Leo e Dione"
         devOrder="3"
       />
       <BookCard />
       <Unfinished
         pageName="Futuro componente de paginação."
         message={['Itens de paginação']}
-        respDev="Leo e Argo"
+        respDev="Leo e Dione"
         devOrder="2"
       />
     </div>
