@@ -68,3 +68,20 @@
 .navbarSearchIcon {
   width: 100%;
 }
+
+@media (min-width: 1080px) {
+  .navbarSearchWrapper {
+    height: 25%;
+    width: 35%;
+  }
+  .navbarSearch{
+    bottom: 7px;
+    font-size: 20px;
+  }
+  .navbarSearchButton {
+    top: 0;
+  }
+  .navbarSearchIcon {
+    width: 80%;
+  }
+}
