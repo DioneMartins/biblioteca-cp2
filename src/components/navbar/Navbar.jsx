@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import homeSVG from '../../assets/dynnamitt_home.svg';
 import searchSVG from '../../assets/Simpleicons_Interface_magnifier.svg';
@@ -16,6 +16,8 @@ const {
 } = styles;
 
 export default function Navbar() {
+  const [search, setSearch] = useState('');
+
   return (
     <div className={navbarWrapper}>
       <Link className={navbarHome} to={'/'}>
@@ -30,10 +32,16 @@ export default function Navbar() {
         </Link>
       </div>
       <div className={navbarSearchWrapper}>
-        <input type="text" className={navbarSearch} />
-        <button className={navbarSearchButton}>
+        <input
+          id="searchBox"
+          type="text"
+          className={navbarSearch}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <Link className={navbarSearchButton} to={'/search/' + search}>
           <img className={navbarSearchIcon} src={searchSVG} alt="Pesquisar" />
-        </button>
+        </Link>
       </div>
     </div>
   );
