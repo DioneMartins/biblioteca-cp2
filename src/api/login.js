@@ -54,6 +54,15 @@ function expandUserTime() {
   } else deleteUser();
 }
 
+export function changeLocalStorageName() {
+  const auth = getAuth();
+  if (localStorage.getItem('curLogin') && localStorage.getItem('loginExpiry')) {
+    const item = JSON.parse(localStorage.getItem('curLogin'));
+    item.userName = auth.currentUser.displayName;
+    localStorage.setItem('curLogin', JSON.stringify(item));
+  }
+}
+
 export function getUserAttribute(desiredAttribute) {
   const user = localStorage.getItem('curLogin');
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { deleteUser, getUserAttribute } from '../../api/login';
-import { changeName } from '../../api/api';
 import { getAuth, signOut } from 'firebase/auth';
+import TextToUpdate from './textToUpdate/TextToUpdate';
 import styles from './Logged.module.css';
 
 const {
@@ -14,11 +14,23 @@ const {
   loggedChangePassword,
 } = styles;
 export default function Logged(props) {
+  const [desiredTextUpdate, setDesiredTextUpdate] = useState('');
+  const [userName, setUserName] = useState('');
+  const [didChange, setDidChange] = useState([]);
+
+  useEffect(() => {
+    setUserName(getUserAttribute('userName'));
+  }, [didChange]);
+
+  const receivedUpdate = (value) => {
+    setDidChange((didChange) => [...didChange, value]);
+  };
+
   return (
     <div className={loggedWrapper}>
       <div className={loggedWelcome}>
         <p className={loggedHello}>Olá, </p>
-        <p className={loggedName}>{getUserAttribute('userName')}</p>
+        <p className={loggedName}>{userName}</p>
       </div>
       <button
         className={loggedButton}
@@ -39,7 +51,7 @@ export default function Logged(props) {
       <button
         className={loggedChangeName}
         onClick={(e) => {
-          changeName(getUserAttribute('userUID'), 'newName');
+          setDesiredTextUpdate('name');
         }}
       >
         Mudar nome
@@ -47,11 +59,12 @@ export default function Logged(props) {
       <button
         className={loggedChangePassword}
         onClick={(e) => {
-          return '';
+          setDesiredTextUpdate('password');
         }}
       >
         Mudar senha
       </button>
+      <TextToUpdate wasUpdated={receivedUpdate} desiredUpdate={desiredTextUpdate} />
     </div>
   );
 }

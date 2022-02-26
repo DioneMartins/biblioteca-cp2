@@ -5,10 +5,11 @@ import {
   orderBy,
   getDocs,
   getFirestore,
-  doc,
+  /* doc,
   getDoc,
-  updateDoc,
+  updateDoc, */
 } from 'firebase/firestore';
+import { updateProfile, getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAFeKZUfV5XBuvnTyC8MyqDRauB5wUQyaU',
@@ -39,39 +40,18 @@ export async function getBookList() {
   }
 }
 
-export async function getUserName(userUID) {
-  let result = '';
+export async function changeName(desiredName) {
   try {
-    const docRef = doc(database, 'users', userUID);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      result = docSnap.data().name;
-    } else {
-      result = 'Anônimo';
-    }
-  } catch (e) {
-    result = 'Erro';
-  } finally {
-    return result;
-  }
-}
-
-export async function changeName(userUID, desiredName) {
-  try {
-    const docRef = doc(database, 'users', userUID);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      await updateDoc(docRef, {
-        name: desiredName,
+    if (desiredName !== '') {
+      updateProfile(getAuth().currentUser, {
+        displayName: desiredName,
       });
     } else {
-      return '';
+      return 'Erro';
     }
   } catch (e) {
-    return '';
+    return 'Erro';
   } finally {
-    return '';
+    return 'Finalizado';
   }
 }

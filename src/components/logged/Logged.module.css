@@ -24,30 +24,34 @@
   border-radius: 8px;
   text-decoration: none;
   color: white;
-  width: 75%;
   font-size: 18px;
   text-align: center;
-  height: 50%;
   align-self: center;
 }
 
 .loggedButton{
   background-color: var(--navbarButton);
-  grid-column: 4;
+  grid-column: 3;
   grid-row: 1;
   padding: 5px 0px 5px 0px;
+  width: 75%;
+  height: 50%;
 }
 
 .loggedChangeName{
   grid-column: 1;
   grid-row: 3;
   background-color: var(--changeInfoButton);
+  width: 75%;
+  height: 50%;
 }
 
 .loggedChangePassword{
-  grid-column: 4;
+  grid-column: 3;
   grid-row: 3;
   background-color: var(--changeInfoButton);
+  width: 75%;
+  height: 50%;
 }
 
 @media(min-width: 1080px){
@@ -56,8 +60,8 @@
     margin: 2% 3vw 0 3vw;
     height: 50vh;
     display: grid;
-    grid-template-columns: 2fr, 1fr, 1fr, 2fr;
-    grid-template-rows: 1fr, 1fr, 2fr;
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-rows: 2fr 1fr 2fr 2fr;
     justify-items: center;
   }
 }
