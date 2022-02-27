@@ -1,5 +1,15 @@
 import { initializeApp } from 'firebase/app';
-import { collection, query, orderBy, getDocs, getFirestore } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  getFirestore,
+  doc,
+  getDoc,
+  where,
+} from 'firebase/firestore';
+import Fuse from 'fuse.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAFeKZUfV5XBuvnTyC8MyqDRauB5wUQyaU',
@@ -28,18 +38,48 @@ export async function getBookList() {
   } finally {
     return result;
   }
+}
 
-  /*const reference = ref(database);
-  return get(child(reference, '/books/results'))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const result = snapshot.val();
-        return result;
-      } else {
-        return 'No data available';
-      }
-    })
-    .catch(() => {
-      return 'Error fetching, try again';
-    });*/
+export async function getSearchedBooks(item) {
+  const result = [];
+  try {
+    const searchQuery = await getBookListResults(item);
+    const q = query(collection(database, 'books'), where('title', '==', searchQuery[0]));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      result.push(doc.data());
+    });
+  } catch (e) {
+    result.push('No books or error fetching');
+  } finally {
+    return result;
+  }
+}
+
+async function getBookListResults(item) {
+  const res = await getBookLinks();
+  let searcherArray = [];
+  Object.keys(res).forEach((key) => {
+    searcherArray.push(res[key].bookName);
+  });
+  const fuse = new Fuse(searcherArray, { threshold: 0.5 });
+  const result = fuse.search(item);
+  const returnResult = [];
+  Object.keys(result).forEach((key) => {
+    returnResult.push(result[key].item);
+  });
+  return returnResult;
+}
+
+async function getBookLinks() {
+  let result = '';
+  try {
+    const docRef = doc(database, 'bookLinks', 'allBooks');
+    const docSnap = await getDoc(docRef);
+    result = docSnap.data().results;
+  } catch (e) {
+    result = e;
+  } finally {
+    return result;
+  }
 }
