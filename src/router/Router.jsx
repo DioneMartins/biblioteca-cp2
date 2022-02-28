@@ -9,6 +9,7 @@ export default function Router() {
       <Route path="/lista" element={<List />} />
       <Route path="/login" element={<Login />} />
       <Route path="/search/:search" element={<SearchPage />} />
+      <Route path="/search/" element={<SearchPage />} />
     </Routes>
   );
 }
