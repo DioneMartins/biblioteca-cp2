@@ -44,7 +44,7 @@ export async function getSearchedBooks(item) {
   const result = [];
   try {
     const searchQuery = await getBookListResults(item);
-    const q = query(collection(database, 'books'), where('title', '==', searchQuery[0]));
+    const q = query(collection(database, 'books'), where('title', 'in', searchQuery));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       result.push(doc.data());
@@ -62,7 +62,7 @@ async function getBookListResults(item) {
   Object.keys(res).forEach((key) => {
     searcherArray.push(res[key].bookName);
   });
-  const fuse = new Fuse(searcherArray, { threshold: 0.5 });
+  const fuse = new Fuse(searcherArray, { shouldSort: true, threshold: 0.5 });
   const result = fuse.search(item);
   const returnResult = [];
   Object.keys(result).forEach((key) => {
