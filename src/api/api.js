@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { collection, query, orderBy, getDocs, doc, getFirestore } from 'firebase/firestore';
+import { collection, query, orderBy, getDoc, doc, getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAFeKZUfV5XBuvnTyC8MyqDRauB5wUQyaU',
@@ -19,7 +19,7 @@ export async function getBookList() {
   const result = [];
   try {
     const q = query(collection(database, 'books'), orderBy('title'));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDoc(q);
     querySnapshot.forEach((doc) => {
       result.push(doc.data());
     });
@@ -59,11 +59,14 @@ export async function getBookList() {
   }
 }*/
 export async function getInitCards() {
-  let result = '';
+  let result = [];
   try {
     const docRef = doc(database, 'displayInfo', 'homeCards');
-    const docSnap = await getDocs(docRef);
-    result = docSnap.data();
+    const docSnap = await getDoc(docRef);
+    const res = docSnap.data();
+    Object.keys(res).forEach((key) => {
+      result.push(res[key]);
+    });
   } catch (e) {
     result = e;
   } finally {

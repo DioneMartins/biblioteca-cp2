@@ -1,0 +1,17 @@
+.cardWrapper{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color:white;
+  padding-left: 20px;
+}
+
+.cardWrapper p{
+  color: #156ca2;
+  font-weight: bold;
+  text-align: center;
+}
+
+.title {
+font-size: 20px;
+}

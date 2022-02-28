@@ -25,12 +25,11 @@ export default function HomeCards() {
   useEffect(() => {
     loadCards();
   }, []);
-  console.log(initCardsData);
 
   return (
     <>
       {isLoading && !failed && (
-        <div className={homeCardWrapper}>
+        <div>
           <p>Carregando</p>
         </div>
       )}
@@ -39,11 +38,24 @@ export default function HomeCards() {
           <p>Erro</p>
         </div>
       )}
-      {!isLoading && !failed && (
-        <>
-          <p>teste</p>
-        </>
-      )}
+      <div className={homeCardWrapper}>
+        {!isLoading && !failed && (
+          <>
+            {initCardsData.map(({ cardTitle, img, link, priority }, index) => {
+              return (
+                <HomeCardsItem
+                  key={index}
+                  title={cardTitle}
+                  image={img}
+                  link={link}
+                  priority={priority}
+                  index={index}
+                />
+              );
+            })}
+          </>
+        )}
+      </div>
     </>
   );
 }
