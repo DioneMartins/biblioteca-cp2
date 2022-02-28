@@ -18,14 +18,8 @@ export default function BookCardItem({ firstName, lastName, notes, quant, title,
 BookCardItem.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  notes: PropTypes.arrayOf(PropTypes.string),
-  quant: PropTypes.number,
+  notes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  quant: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  bookNumber: PropTypes.number,
-};
-
-BookCardItem.defaultProps = {
-  firstName: '',
-  lastName: '',
-  title: 'Nenhum livro encontrado',
+  bookNumber: PropTypes.number.isRequired,
 };
