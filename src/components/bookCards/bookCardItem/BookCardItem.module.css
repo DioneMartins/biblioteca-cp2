@@ -7,6 +7,8 @@
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 6%;
+  width: 70vw;
+  height: 120px;
 }
 
 .cardWrapper p{
@@ -23,9 +25,8 @@
   font-size: 14px;
 }
 
-@media (max-width: 1080px){
+@media (min-width: 1080px){
   .cardWrapper{
-    width: 70vw;
-    height: 120px;
+    width: 50vw;
   }
 }
