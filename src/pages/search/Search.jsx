@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, BookCardItem, Unfinished } from '../../components';
+import { Navbar, BookCardItem } from '../../components';
 import { getSearchedBooks } from '../../api/api';
 import { useLocation } from 'react-router-dom';
 
