@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { collection, query, orderBy, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs, doc, getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAFeKZUfV5XBuvnTyC8MyqDRauB5wUQyaU',
@@ -44,18 +44,29 @@ export async function getBookList() {
     });*/
 }
 
-export async function getInitCards() {
-  const reference = ref(database);
-  return get(child(reference, '/displayInfo/homeCards/results'))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const result = snapshot.val();
-        return result;
-      } else {
-        return 'No data available';
-      }
-    })
-    .catch(() => {
-      return 'Error fetching, try again';
+/*export async function getInitCards() {
+  const result = [];
+  try {
+    const c = query(collection(database, 'books'), orderBy('title'));
+    const querySnapshot = await getDocs(c);
+    querySnapshot.forEach((doc) => {
+      result.push(doc.data());
     });
+  } catch (e) {
+    result.push('Error fetching');
+  } finally {
+    return result;
+  }
+}*/
+export async function getInitCards() {
+  let result = '';
+  try {
+    const docRef = doc(database, 'displayInfo', 'homeCards');
+    const docSnap = await getDocs(docRef);
+    result = docSnap.data();
+  } catch (e) {
+    result = e;
+  } finally {
+    return result;
+  }
 }

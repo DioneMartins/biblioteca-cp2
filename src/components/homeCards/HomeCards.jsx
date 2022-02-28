@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getInitCards } from '../../api/api';
 import HomeCardsItem from './homeCarditem/HomeCardItem';
+import styles from './HomeCards.module.css';
+
+const { homeCardWrapper } = styles;
 
 export default function HomeCards() {
   const [initCardsData, setInitCardsData] = useState([]);
@@ -22,11 +25,12 @@ export default function HomeCards() {
   useEffect(() => {
     loadCards();
   }, []);
+  console.log(initCardsData);
 
   return (
     <>
       {isLoading && !failed && (
-        <div>
+        <div className={homeCardWrapper}>
           <p>Carregando</p>
         </div>
       )}
@@ -37,9 +41,7 @@ export default function HomeCards() {
       )}
       {!isLoading && !failed && (
         <>
-          {initCardsData.map(({ cardTitle, img, link, priority }, index) => {
-            return <HomeCardsItem />;
-          })}
+          <p>teste</p>
         </>
       )}
     </>
