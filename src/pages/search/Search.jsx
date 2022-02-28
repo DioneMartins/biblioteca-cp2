@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Navbar, BookCardItem } from '../../components';
 import { getSearchedBooks } from '../../api/api';
 import { useLocation } from 'react-router-dom';
+import styles from './Search.module.css';
 
+const { searchBookWrapper } = styles;
 export default function Search() {
   const [searchedData, setSearchedData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,21 +28,23 @@ export default function Search() {
   return (
     <div>
       <Navbar />
-      {loading
-        ? 'Carregando'
-        : searchedData.map(({ afn, aln, notes, quant, title }, index) => {
-            return (
-              <BookCardItem
-                key={title}
-                firstName={afn}
-                lastName={aln}
-                notes={notes}
-                quant={quant}
-                title={title}
-                bookNumber={index}
-              />
-            );
-          })}
+      <div className={searchBookWrapper}>
+        {loading
+          ? 'Carregando'
+          : searchedData.map(({ afn, aln, notes, quant, title }, index) => {
+              return (
+                <BookCardItem
+                  key={title}
+                  firstName={afn}
+                  lastName={aln}
+                  notes={notes}
+                  quant={quant}
+                  title={title}
+                  bookNumber={index}
+                />
+              );
+            })}
+      </div>
     </div>
   );
 }
