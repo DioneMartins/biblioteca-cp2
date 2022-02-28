@@ -1,14 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-  collection,
-  query,
-  orderBy,
-  getDocs,
-  getFirestore,
-  doc,
-  getDoc,
-  where,
-} from 'firebase/firestore';
+import { collection, query, orderBy, getDocs, getFirestore, doc, getDoc } from 'firebase/firestore';
 import Fuse from 'fuse.js';
 
 const firebaseConfig = {
@@ -43,11 +34,16 @@ export async function getBookList() {
 export async function getSearchedBooks(item) {
   const result = [];
   try {
-    const searchQuery = await getBookListResults(item);
-    const q = query(collection(database, 'books'), where('title', 'in', searchQuery));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      result.push(doc.data());
+    const searchResult = await getBookListResults(item);
+    const docsID = [];
+
+    for (let i = 0; i < searchResult.length; i++) {
+      docsID.push(searchResult[i].docID);
+    }
+
+    docsID.forEach((id) => {
+      const docRef = doc(database, 'books', id);
+      getDoc(docRef).then((r) => result.push(r.data()));
     });
   } catch (e) {
     result.push('No books or error fetching');
@@ -62,13 +58,18 @@ async function getBookListResults(item) {
   Object.keys(res).forEach((key) => {
     searcherArray.push(res[key].bookName);
   });
-  const fuse = new Fuse(searcherArray, { shouldSort: true, threshold: 0.5 });
+  const fuse = new Fuse(searcherArray, { shouldSort: true, threshold: 0.5, includeScore: true });
   const result = fuse.search(item);
-  const returnResult = [];
+  const finalResult = [];
+  result.sort((a, b) => a.score > b.score);
   Object.keys(result).forEach((key) => {
-    returnResult.push(result[key].item);
+    finalResult.push({
+      index: result[key].refIndex,
+      score: result[key].score,
+      docID: res[result[key].refIndex].bookID,
+    });
   });
-  return returnResult;
+  return finalResult;
 }
 
 async function getBookLinks() {

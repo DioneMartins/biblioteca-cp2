@@ -17,19 +17,7 @@ export default function Search() {
   async function loadSearchBooks(srch) {
     try {
       const bookArray = await getSearchedBooks(srch);
-      if (bookArray[0] === 'No books or error fetching') {
-        setSearchedData([
-          {
-            afn: '',
-            aln: '',
-            barcode: (1)[0],
-            icn: (1)[''],
-            notes: (1)[''],
-            quant: 1,
-            title: 'Nenhum livro encontrado',
-          },
-        ]);
-      } else setSearchedData(bookArray);
+      setSearchedData(bookArray);
     } catch (e) {
       setSearchedData(null);
     } finally {
