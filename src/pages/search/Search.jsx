@@ -23,7 +23,8 @@ export default function Search() {
   async function loadSearchBooks(srch) {
     try {
       const bookArray = await getSearchedBooks(srch);
-      setSearchedData(bookArray);
+      if (bookArray.length !== 0) setSearchedData(bookArray);
+      else setSearchedData(null);
     } catch (e) {
       setSearchedData(null);
     } finally {
