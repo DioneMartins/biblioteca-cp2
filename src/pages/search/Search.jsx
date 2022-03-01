@@ -8,6 +8,9 @@ const { searchBookWrapper } = styles;
 export default function Search() {
   const [searchedData, setSearchedData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [noBook, setNoBook] = useState(false);
+  const [showBooks, setShowBooks] = useState(false);
+
   const link = useLocation();
   useEffect(() => {
     const srch = link.pathname.substring(8);
@@ -17,19 +20,8 @@ export default function Search() {
   async function loadSearchBooks(srch) {
     try {
       const bookArray = await getSearchedBooks(srch);
-      if (bookArray[0] === 'No books or error fetching') {
-        setSearchedData([
-          {
-            afn: '',
-            aln: '',
-            barcode: (1)[0],
-            icn: (1)[''],
-            notes: (1)[''],
-            quant: 1,
-            title: 'Nenhum livro encontrado',
-          },
-        ]);
-      } else setSearchedData(bookArray);
+      bookArray ? setShowBooks(true) : setNoBook(true);
+      setSearchedData(bookArray);
     } catch (e) {
       setSearchedData(null);
     } finally {
@@ -41,21 +33,22 @@ export default function Search() {
     <div>
       <Navbar />
       <div className={searchBookWrapper}>
-        {loading
-          ? 'Carregando'
-          : searchedData.map(({ afn, aln, notes, quant, title }, index) => {
-              return (
-                <BookCardItem
-                  key={title}
-                  firstName={afn}
-                  lastName={aln}
-                  notes={notes}
-                  quant={quant}
-                  title={title}
-                  bookNumber={index}
-                />
-              );
-            })}
+        {loading && 'Carregando'}
+        {showBooks &&
+          searchedData.map(({ afn, aln, notes, quant, title }, index) => {
+            return (
+              <BookCardItem
+                key={title}
+                firstName={afn}
+                lastName={aln}
+                notes={notes}
+                quant={quant}
+                title={title}
+                bookNumber={index}
+              />
+            );
+          })}
+        {noBook && <BookCardItem />}
       </div>
     </div>
   );
