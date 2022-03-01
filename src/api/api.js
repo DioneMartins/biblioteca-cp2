@@ -72,14 +72,14 @@ async function getBookListResults(item) {
 
   const bookFuse = new Fuse(searcherBookArray, {
     shouldSort: true,
-    threshold: 0.4,
+    threshold: 0.3,
     includeScore: true,
     ignoreLocation: true,
   });
   const bookRes = bookFuse.search(item);
   const authFuse = new Fuse(searcherAuthorArray, {
     shouldSort: true,
-    threshold: 0.4,
+    threshold: 0.3,
     includeScore: true,
     ignoreLocation: true,
   });
