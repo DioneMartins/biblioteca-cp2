@@ -1,14 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-  collection,
-  query,
-  orderBy,
-  getDocs,
-  getFirestore,
-  doc,
-  getDoc,
-  where,
-} from 'firebase/firestore';
+import { collection, query, orderBy, getDocs, getFirestore, doc, getDoc } from 'firebase/firestore';
 import Fuse from 'fuse.js';
 
 const firebaseConfig = {
@@ -41,34 +32,68 @@ export async function getBookList() {
 }
 
 export async function getSearchedBooks(item) {
-  const result = [];
+  const finalResult = [];
+
   try {
-    const searchQuery = await getBookListResults(item);
-    const q = query(collection(database, 'books'), where('title', 'in', searchQuery));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      result.push(doc.data());
-    });
+    const res = await getBookListResults(item);
+    for (const id of res) {
+      const docRef = doc(database, 'books', id);
+      const docSnap = await getDoc(docRef);
+      finalResult.push(docSnap.data());
+    }
   } catch (e) {
-    result.push('No books or error fetching');
+    finalResult.push('No books or error fetching');
   } finally {
-    return result;
+    return finalResult;
   }
 }
 
 async function getBookListResults(item) {
   const res = await getBookLinks();
-  let searcherArray = [];
+  let searcherBookArray = [];
+  let searcherAuthorArray = [];
+
   Object.keys(res).forEach((key) => {
-    searcherArray.push(res[key].bookName);
+    searcherBookArray.push(res[key].bookName);
   });
-  const fuse = new Fuse(searcherArray, { shouldSort: true, threshold: 0.5 });
-  const result = fuse.search(item);
-  const returnResult = [];
-  Object.keys(result).forEach((key) => {
-    returnResult.push(result[key].item);
+  Object.keys(res).forEach((key) => {
+    searcherAuthorArray.push(res[key].authorName);
   });
-  return returnResult;
+
+  const bookFuse = new Fuse(searcherBookArray, {
+    shouldSort: true,
+    threshold: 0.4,
+    includeScore: true,
+    ignoreLocation: true,
+  });
+  const bookRes = bookFuse.search(item);
+  const authFuse = new Fuse(searcherAuthorArray, {
+    shouldSort: true,
+    threshold: 0.4,
+    includeScore: true,
+    ignoreLocation: true,
+  });
+  const authRes = authFuse.search(item);
+
+  const result = bookRes;
+  authRes.forEach((item) => {
+    let hasEqual = false;
+    for (let i = 0; i < bookRes.length; i++) {
+      if (!hasEqual)
+        if (item.refIndex === bookRes[i].refIndex) {
+          if (item.score < bookRes[i].score) {
+            bookRes[i].score = item.score;
+          }
+          hasEqual = true;
+          break;
+        }
+    }
+    if (!hasEqual) result.push(item);
+  });
+  result.sort((a, b) => a.score - b.score);
+  const finalResult = [];
+  result.forEach((item) => finalResult.push(res[item.refIndex].bookID));
+  return finalResult;
 }
 
 async function getBookLinks() {

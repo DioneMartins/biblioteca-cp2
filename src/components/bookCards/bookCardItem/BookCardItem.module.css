@@ -12,7 +12,7 @@
 }
 
 .cardWrapper p{
-  color: #156ca2;
+  color: var(--strongBlue);
   font-weight: bold;
   text-align: center;
 }

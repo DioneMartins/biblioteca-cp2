@@ -5,3 +5,9 @@
   flex-direction: column;
   align-items: center;
 }
+
+.bookCardLoader p{
+  color: var(--strongBlue);
+  text-align: center;
+  font-size: 26px;
+}
