@@ -108,3 +108,21 @@ async function getBookLinks() {
     return result;
   }
 }
+
+export async function getUserName(userUID) {
+  let result = '';
+  try {
+    const docRef = doc(database, 'users', userUID);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      result = docSnap.data().name;
+    } else {
+      result = 'Anônimo';
+    }
+  } catch (e) {
+    result = 'Erro';
+  } finally {
+    return result;
+  }
+}
