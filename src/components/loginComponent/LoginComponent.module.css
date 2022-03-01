@@ -1,0 +1,80 @@
+.loginWrapper{
+  width: 95vw;
+  height: 70vh;
+  margin: auto;
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginWrapper label{
+  font-size: 24px;
+  color: var(--grayBlue);
+}
+
+.loginMessage{
+  font-size: 16px;
+  color: var(--grayBlue);
+  margin-bottom: 7vh;
+}
+
+.loginEmailInput{
+  margin-bottom: 5vh;
+  background-color: white;
+  border: hidden;
+  width: 80%;
+  padding: 10px 5px 10px 5px;
+  color: var(--searchIcon);
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: lowercase;
+  border-radius: 20px;
+}
+
+.loginPasswordInput{
+  margin-bottom: 3vh;
+  background-color: white;
+  border: hidden;
+  width: 80%;
+  padding: 10px 5px 10px 5px;
+  color: var(--searchIcon);
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: lowercase;
+  border-radius: 20px;
+}
+
+.loginKeep {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 10px;
+}
+
+.loginKeep label{
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.loginButton{
+  background-color: var(--navbarButton);
+  border: hidden;
+  width: 30%;
+  padding: 5px 0px 5px 0px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.loginWarning{
+  margin-top: 5vh;
+  font-size: 20px;
+  color: var(--grayBlue);
+}
