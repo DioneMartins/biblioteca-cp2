@@ -5,11 +5,12 @@ import {
   orderBy,
   getDocs,
   getFirestore,
-  /* doc,
+  doc,
   getDoc,
-  updateDoc, */
+  /* updateDoc, */
 } from 'firebase/firestore';
 import { updateProfile, getAuth } from 'firebase/auth';
+import Fuse from 'fuse.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAFeKZUfV5XBuvnTyC8MyqDRauB5wUQyaU',
@@ -35,6 +36,102 @@ export async function getBookList() {
     });
   } catch (e) {
     result.push('Error fetching');
+  } finally {
+    return result;
+  }
+}
+
+export async function getSearchedBooks(item) {
+  const finalResult = [];
+
+  try {
+    const res = await getBookListResults(item);
+    for (const id of res) {
+      const docRef = doc(database, 'books', id);
+      const docSnap = await getDoc(docRef);
+      finalResult.push(docSnap.data());
+    }
+  } catch (e) {
+    finalResult.push('No books or error fetching');
+  } finally {
+    return finalResult;
+  }
+}
+
+async function getBookListResults(item) {
+  const res = await getBookLinks();
+  let searcherBookArray = [];
+  let searcherAuthorArray = [];
+
+  Object.keys(res).forEach((key) => {
+    searcherBookArray.push(res[key].bookName);
+  });
+  Object.keys(res).forEach((key) => {
+    searcherAuthorArray.push(res[key].authorName);
+  });
+
+  const bookFuse = new Fuse(searcherBookArray, {
+    shouldSort: true,
+    threshold: 0.4,
+    includeScore: true,
+    ignoreLocation: true,
+  });
+  const bookRes = bookFuse.search(item);
+  const authFuse = new Fuse(searcherAuthorArray, {
+    shouldSort: true,
+    threshold: 0.4,
+    includeScore: true,
+    ignoreLocation: true,
+  });
+  const authRes = authFuse.search(item);
+
+  const result = bookRes;
+  authRes.forEach((item) => {
+    let hasEqual = false;
+    for (let i = 0; i < bookRes.length; i++) {
+      if (!hasEqual)
+        if (item.refIndex === bookRes[i].refIndex) {
+          if (item.score < bookRes[i].score) {
+            bookRes[i].score = item.score;
+          }
+          hasEqual = true;
+          break;
+        }
+    }
+    if (!hasEqual) result.push(item);
+  });
+  result.sort((a, b) => a.score - b.score);
+  const finalResult = [];
+  result.forEach((item) => finalResult.push(res[item.refIndex].bookID));
+  return finalResult;
+}
+
+async function getBookLinks() {
+  let result = '';
+  try {
+    const docRef = doc(database, 'bookLinks', 'allBooks');
+    const docSnap = await getDoc(docRef);
+    result = docSnap.data().results;
+  } catch (e) {
+    result = e;
+  } finally {
+    return result;
+  }
+}
+
+export async function getUserName(userUID) {
+  let result = '';
+  try {
+    const docRef = doc(database, 'users', userUID);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      result = docSnap.data().name;
+    } else {
+      result = 'Anônimo';
+    }
+  } catch (e) {
+    result = 'Erro';
   } finally {
     return result;
   }
