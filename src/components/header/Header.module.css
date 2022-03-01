@@ -34,3 +34,18 @@
   font-weight: bold;
   font-size: 26px;
 }
+
+@media (min-width: 1080px) {
+  .headerWrapper{
+    grid-template-columns: 8fr 60fr;
+    grid-template-rows: 100%;
+    height: 20%;
+    padding: 1% 2vw 1% 8vw;
+    justify-items: left;
+    
+  }
+
+  .headerLogo {
+    width: 150%;
+  }
+}

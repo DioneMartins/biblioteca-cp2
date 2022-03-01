@@ -61,10 +61,27 @@
   background-color: transparent;
   border: hidden;
   left: 6px;
-  top: 1px;
+  top: 2px;
   width: 12%;
 }
 
 .navbarSearchIcon {
-  width: 100%;
+  width: 10%;
+}
+
+@media (min-width: 1080px) {
+  .navbarSearchWrapper {
+    height: 25%;
+    width: 35%;
+  }
+  .navbarSearch{
+    bottom: 7px;
+    font-size: 20px;
+  }
+  .navbarSearchButton {
+    top: 0;
+  }
+  .navbarSearchIcon {
+    width: 10%;
+  }
 }

@@ -6,10 +6,13 @@
   border-radius: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-bottom: 6%;
+  width: 70vw;
+  height: 120px;
 }
 
 .cardWrapper p{
-  color: #156ca2;
+  color: var(--strongBlue);
   font-weight: bold;
   text-align: center;
 }
@@ -22,9 +25,8 @@
   font-size: 14px;
 }
 
-@media (max-width: 1080px){
+@media (min-width: 1080px){
   .cardWrapper{
-    width: 70vw;
-    height: 20vh;
+    width: 50vw;
   }
 }
