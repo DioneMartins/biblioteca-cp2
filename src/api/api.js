@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { collection, query, orderBy, getFirestore, doc, getDoc } from 'firebase/firestore';
+import { collection, query, orderBy, getFirestore, doc, getDoc, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAFeKZUfV5XBuvnTyC8MyqDRauB5wUQyaU',
@@ -19,7 +19,7 @@ export async function getBookList() {
   const result = [];
   try {
     const q = query(collection(database, 'books'), orderBy('title'));
-    const querySnapshot = await getDoc(q);
+    const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       result.push(doc.data());
     });
