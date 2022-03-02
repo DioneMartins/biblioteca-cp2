@@ -1,5 +1,17 @@
 import { initializeApp } from 'firebase/app';
-import { collection, query, orderBy, getDocs, getFirestore, doc, getDoc } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  addDoc,
+  deleteDoc,
+} from 'firebase/firestore';
+import { updateProfile, getAuth } from 'firebase/auth';
 import Fuse from 'fuse.js';
 
 const firebaseConfig = {
@@ -22,7 +34,7 @@ export async function getBookList() {
     const q = query(collection(database, 'books'), orderBy('title'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      result.push(doc.data());
+      result.push(doc);
     });
   } catch (e) {
     result.push('Error fetching');
@@ -39,7 +51,7 @@ export async function getSearchedBooks(item) {
     for (const id of res) {
       const docRef = doc(database, 'books', id);
       const docSnap = await getDoc(docRef);
-      finalResult.push(docSnap.data());
+      finalResult.push(docSnap);
     }
   } catch (e) {
     finalResult.push('No books or error fetching');
@@ -60,19 +72,16 @@ async function getBookListResults(item) {
     searcherAuthorArray.push(res[key].authorName);
   });
 
-  const bookFuse = new Fuse(searcherBookArray, {
+  const options = {
     shouldSort: true,
-    threshold: 0.3,
+    threshold: 0.4,
     includeScore: true,
     ignoreLocation: true,
-  });
+  };
+
+  const bookFuse = new Fuse(searcherBookArray, options);
   const bookRes = bookFuse.search(item);
-  const authFuse = new Fuse(searcherAuthorArray, {
-    shouldSort: true,
-    threshold: 0.3,
-    includeScore: true,
-    ignoreLocation: true,
-  });
+  const authFuse = new Fuse(searcherAuthorArray, options);
   const authRes = authFuse.search(item);
 
   const result = bookRes;
@@ -141,4 +150,115 @@ export async function getInitCards() {
   } finally {
     return result;
   }
+}
+
+export async function changeName(desiredName) {
+  try {
+    if (desiredName !== '') {
+      updateProfile(getAuth().currentUser, {
+        displayName: desiredName,
+      });
+    } else {
+      return 'Erro';
+    }
+  } catch (e) {
+    return 'Erro';
+  } finally {
+    return 'Finalizado';
+  }
+}
+
+export async function updateBook(id) {
+  try {
+    const docRef = doc(database, 'books', id);
+    await updateDoc(docRef, {
+      capital: true,
+    });
+  } catch (e) {
+    return 'Erro';
+  } finally {
+    return 'Finalizado';
+  }
+}
+
+export async function addBook(afn, aln, barcode, icn, notes, quant, title) {
+  let id = '';
+  try {
+    const secondRef = doc(database, 'bookLinks', 'allBooks');
+    const docSnap = await getDoc(secondRef);
+
+    let searcherArray = [];
+    const res = docSnap.data().results;
+    Object.keys(res).forEach((key) => {
+      searcherArray.push(res[key].title);
+    });
+    const fuse = new Fuse(searcherArray, {
+      threshold: 0,
+    });
+    const searchRes = fuse.search(title);
+
+    if (searchRes.length === 0) {
+      const docRef = await addDoc(collection(database, 'books'), {
+        afn: afn,
+        aln: aln,
+        barcode: barcode,
+        icn: icn,
+        notes: notes,
+        quant: quant,
+        title: title,
+      });
+
+      let counter;
+      let lastBook;
+      counter = docSnap.data().count;
+      lastBook = docSnap.data().lastBook;
+      const author = `${afn} ${aln}`;
+      id = docRef.id;
+
+      await updateDoc(secondRef, {
+        count: counter++,
+        lastBook: lastBook++,
+        [`results.${counter}`]: {
+          authorName: author,
+          bookName: title,
+          bookID: id,
+        },
+      });
+    } else id = 'Error';
+  } catch (e) {
+    return 'Error';
+  } finally {
+    return id;
+  }
+}
+
+export async function deleteBook(id) {
+  await deleteDoc(doc(database, 'books', id));
+
+  let counter;
+  const docRef = doc(database, 'bookLinks', 'allBooks');
+
+  let searcherArray = [];
+  const docSnap = await getDoc(docRef);
+  const res = docSnap.data().results;
+
+  Object.keys(res).forEach((key) => {
+    searcherArray.push(res[key].bookID);
+  });
+  const fuse = new Fuse(searcherArray, {
+    threshold: 0,
+  });
+  const searchRes = fuse.search(id);
+
+  counter = docSnap.data().count;
+  let lastBook = docSnap.data().lastBook;
+  if (docSnap.data().lastBook === searchRes[0].refIndex) {
+    lastBook = lastBook--;
+  }
+
+  await updateDoc(docRef, {
+    count: counter--,
+    lastBook: lastBook,
+    [`results.${searchRes[0].refIndex}`]: {},
+  });
 }

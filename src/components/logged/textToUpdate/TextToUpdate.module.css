@@ -1,0 +1,35 @@
+.loggedUpdateInfo{
+  grid-column: 2;
+  grid-row: 4;
+  align-self: center;
+}
+
+.loggedUpdateName{
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loggedNameInput{
+  margin-bottom: 5vh;
+  background-color: white;
+  border: hidden;
+  width: 60%;
+  padding: 10px 5px 10px 5px;
+  color: var(--searchIcon);
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+.loggedUpdateInfo label{
+  font-size: 20px;
+  color: var(--grayBlue);
+  margin-right: 10px;
+}
+
+.loggedTextChangeName{
+  background-color: var(--changeInfoButton);
+  width: 45%;
+  height: 5vh;
+}

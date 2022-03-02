@@ -1,3 +1,5 @@
+import { getAuth, signOut } from 'firebase/auth';
+
 export function saveUser(uUID, uName, keep) {
   const ttl = keep ? 336 : 2;
   const expiryDate = new Date();
@@ -14,8 +16,20 @@ export function saveUser(uUID, uName, keep) {
 }
 
 export function deleteUser() {
-  if (localStorage.getItem('curLogin')) localStorage.removeItem('curLogin');
-  if (localStorage.getItem('loginExpiry')) localStorage.removeItem('loginExpiry');
+  if (localStorage.getItem('curLogin')) {
+    if (localStorage.getItem('loginExpiry')) {
+      localStorage.removeItem('loginExpiry');
+      localStorage.removeItem('curLogin');
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          deleteUser();
+        })
+        .catch((error) => {
+          return '';
+        });
+    }
+  }
 }
 
 export function checkIfUserExists() {
@@ -38,6 +52,15 @@ function expandUserTime() {
     newExpiryDate.setHours(newExpiryDate.getHours() + 336);
     localStorage.setItem('loginExpiry', newExpiryDate.getTime());
   } else deleteUser();
+}
+
+export function changeLocalStorageName() {
+  const auth = getAuth();
+  if (localStorage.getItem('curLogin') && localStorage.getItem('loginExpiry')) {
+    const item = JSON.parse(localStorage.getItem('curLogin'));
+    item.userName = auth.currentUser.displayName;
+    localStorage.setItem('curLogin', JSON.stringify(item));
+  }
 }
 
 export function getUserAttribute(desiredAttribute) {
