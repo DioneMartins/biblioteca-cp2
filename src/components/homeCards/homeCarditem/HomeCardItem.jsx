@@ -23,6 +23,11 @@ HomeCardItem.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  priority: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
+  priority: PropTypes.number,
+  index: PropTypes.number,
+};
+
+HomeCardItem.defaultProps = {
+  priority: 0,
+  index: 0,
 };

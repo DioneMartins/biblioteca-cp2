@@ -127,20 +127,6 @@ export async function getUserName(userUID) {
   }
 }
 
-/*export async function getInitCards() {
-  const result = [];
-  try {
-    const c = query(collection(database, 'books'), orderBy('title'));
-    const querySnapshot = await getDocs(c);
-    querySnapshot.forEach((doc) => {
-      result.push(doc.data());
-    });
-  } catch (e) {
-    result.push('Error fetching');
-  } finally {
-    return result;
-  }
-}*/
 export async function getInitCards() {
   let result = [];
   try {

@@ -18,7 +18,6 @@ export default function HomeCards() {
       setFailed(true);
     } finally {
       setLoading(false);
-      console.log(initCardsData);
     }
   }
 
