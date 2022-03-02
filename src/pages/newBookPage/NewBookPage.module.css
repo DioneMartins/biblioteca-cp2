@@ -1,0 +1,141 @@
+.newCardFullPage{
+  display: grid;
+  grid-template-rows: 150px 80px 280px;
+  column-gap: 0;
+  justify-items: center;
+}
+
+.newCardOuter{
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.newCardWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 6%;
+  width: 70vw;
+  height: 80px;
+}
+
+.newCardWrapper p{
+  color: var(--strongBlue);
+  font-weight: bold;
+  text-align: center;
+}
+
+.newCardTitle{
+  font-size: 20px;
+}
+
+.newCardAuthor{
+  font-size: 14px;
+}
+
+.newCardInfoOuter{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.newCardInfoInner{
+  margin-top: -30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  column-gap: 2vw;
+  row-gap: 5vh;
+  justify-items: center;
+}
+
+.newCardInfoInner input{
+  padding-left: 15px;
+  height: 4vh;
+  position: relative;
+  border: hidden;
+  border-radius: 12px;
+  color: var(--strongBlue);
+  font-weight: bold;
+  font-size: 16px;
+  height: 5vh;
+}
+
+.newCardAFN{
+  width: 25vw;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.newCardALN{
+  width: 25vw;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.newCardTitleInput{
+  width: 25vw;
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.newCardBarcode{
+  width: 25vw;
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.newCardICN{
+  width: 25vw;
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.newCardNotes{
+  width: 25vw;
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.newCardNumber{
+  width: 3vw;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.newCardButton{
+  grid-column: 2;
+  grid-row: 4;
+  height: 6vh;
+  width: 25vw;
+  border: hidden;
+  cursor: pointer;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  align-self: center;
+  background-color: var(--changeInfoButton);
+}
+
+.newCardWarning{
+  color: var(--strongBlue);
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+
+@media (min-width: 1080px){
+  .newCardWrapper{
+    width: 50vw;
+  }
+}

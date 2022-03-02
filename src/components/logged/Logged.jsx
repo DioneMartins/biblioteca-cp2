@@ -3,6 +3,7 @@ import { deleteUser, getUserAttribute } from '../../api/login';
 import { getAuth, signOut } from 'firebase/auth';
 import TextToUpdate from './textToUpdate/TextToUpdate';
 import styles from './Logged.module.css';
+import { Link } from 'react-router-dom';
 
 const {
   loggedWrapper,
@@ -12,7 +13,10 @@ const {
   loggedButton,
   loggedChangeName,
   loggedChangePassword,
+  loggedAddBookWrapper,
+  loggedAddBook,
 } = styles;
+
 export default function Logged(props) {
   const [desiredTextUpdate, setDesiredTextUpdate] = useState('');
   const [userName, setUserName] = useState('');
@@ -64,6 +68,11 @@ export default function Logged(props) {
       >
         Mudar senha
       </button>
+      <div className={loggedAddBookWrapper}>
+        <Link className={loggedAddBook} to={'/novolivro'}>
+          Adicionar livro
+        </Link>
+      </div>
       <TextToUpdate wasUpdated={receivedUpdate} desiredUpdate={desiredTextUpdate} />
     </div>
   );

@@ -4,7 +4,9 @@ import styles from './BookCardItem.module.css';
 
 const { cardWrapper, cardTitle, cardAuthor } = styles;
 
-export default function BookCardItem({ firstName, lastName, notes, quant, title, bookNumber }) {
+export default function BookCardItem(props) {
+  // eslint-disable-next-line no-unused-vars
+  const { firstName, lastName, notes, quant, title, bookNumber, docID } = props;
   return (
     <div className={cardWrapper}>
       <p className={cardTitle}>{title}</p>
@@ -22,6 +24,7 @@ BookCardItem.propTypes = {
   quant: PropTypes.number,
   title: PropTypes.string.isRequired,
   bookNumber: PropTypes.number,
+  docID: PropTypes.string.isRequired,
 };
 
 BookCardItem.defaultProps = {

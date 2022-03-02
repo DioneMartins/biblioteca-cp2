@@ -54,6 +54,7 @@ export default function Search() {
                 quant={book.quant}
                 title={book.title}
                 bookNumber={index}
+                docID={item.id}
               />
             );
           })}

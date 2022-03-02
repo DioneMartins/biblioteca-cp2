@@ -7,7 +7,8 @@ import {
   getFirestore,
   doc,
   getDoc,
-  /* updateDoc, */
+  updateDoc,
+  addDoc,
 } from 'firebase/firestore';
 import { updateProfile, getAuth } from 'firebase/auth';
 import Fuse from 'fuse.js';
@@ -148,6 +149,38 @@ export async function changeName(desiredName) {
     }
   } catch (e) {
     return 'Erro';
+  } finally {
+    return 'Finalizado';
+  }
+}
+
+export async function updateBook(id) {
+  try {
+    const docRef = doc(database, 'books', id);
+    await updateDoc(docRef, {
+      capital: true,
+    });
+  } catch (e) {
+    return 'Erro';
+  } finally {
+    return 'Finalizado';
+  }
+}
+
+export async function addBook(afn, aln, barcode, icn, notes, quant, title) {
+  try {
+    // eslint-disable-next-line no-unused-vars
+    const docRef = await addDoc(collection(database, 'books'), {
+      afn: afn,
+      aln: aln,
+      barcode: barcode,
+      icn: icn,
+      notes: notes,
+      quant: quant,
+      title: title,
+    });
+  } catch (e) {
+    return e;
   } finally {
     return 'Finalizado';
   }

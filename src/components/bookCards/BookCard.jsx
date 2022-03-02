@@ -43,6 +43,7 @@ export default function BookCard() {
               quant={book.quant}
               title={book.title}
               bookNumber={index}
+              docID={item.id}
             />
           );
         })
