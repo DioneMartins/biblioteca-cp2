@@ -136,6 +136,22 @@ export async function getUserName(userUID) {
   }
 }
 
+export async function getInitCards() {
+  let result = [];
+  try {
+    const docRef = doc(database, 'displayInfo', 'homeCards');
+    const docSnap = await getDoc(docRef);
+    const res = docSnap.data();
+    Object.keys(res).forEach((key) => {
+      result.push(res[key]);
+    });
+  } catch (e) {
+    result = e;
+  } finally {
+    return result;
+  }
+}
+
 export async function changeName(desiredName) {
   try {
     if (desiredName !== '') {

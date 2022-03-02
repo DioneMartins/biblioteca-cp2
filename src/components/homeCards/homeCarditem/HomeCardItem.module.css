@@ -1,0 +1,23 @@
+.cardWrapper{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color:var(--whiteBlue);
+  border-radius: 20px;
+}
+
+.cardTitle{
+  color: var(--strongBlue);
+  font-weight: bold;
+  text-align: center;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+
+
+.imageWrapper{
+  width: 20px;
+  margin-right: 5px;
+}

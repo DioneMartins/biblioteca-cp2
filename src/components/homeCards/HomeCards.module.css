@@ -1,0 +1,9 @@
+.homeCardWrapper{
+  margin-top: 10px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
