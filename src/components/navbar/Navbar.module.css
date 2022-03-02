@@ -71,8 +71,10 @@
 
 @media (min-width: 1080px) {
   .navbarSearchWrapper {
-    height: 25%;
-    width: 70%;
+    height: 26%;
+    width: 65%;
+    justify-content: flex-start;
+    
   }
   .navbarSearch{
     bottom: 7px;
@@ -80,9 +82,12 @@
   }
   .navbarSearchButton {
     top: 0;
+    border:hidden;
+    left: 65px;
+    width:12%;
   }
   .navbarSearchIcon {
-    width: 10%;
+    width: 5%;
   }
 }
 
@@ -99,13 +104,13 @@
     text-align: center;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 19px; 
+    font-size: 18px;
     margin: 0px 8px 0px 8px;
 }
 
   .navbarButtonWrapper {
     display: flex;
-    width: 100%;
+    width: 95%;
     flex-direction: row;
     justify-content:flex-start;
   }
