@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, setPersistence } from 'firebase/auth';
 import { saveUser } from '../../api/login';
 import styles from './LoginComponent.module.css';
 
@@ -21,6 +21,8 @@ export default function LoginComponent(props) {
 
   function handleLoginRequest() {
     const auth = getAuth();
+    if (keepLogin) setPersistence(auth, 'local');
+    else setPersistence(auth, 'session');
     signInWithEmailAndPassword(auth, userEmail, password)
       .then((userCredential) => {
         const user = userCredential.user;

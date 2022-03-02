@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BookCardItem.module.css';
+import { deleteBook } from '../../../api/api';
 
 const { cardWrapper, cardTitle, cardAuthor } = styles;
 
@@ -13,6 +14,7 @@ export default function BookCardItem(props) {
       <p className={cardAuthor}>
         {firstName} {lastName}
       </p>
+      <button onClick={() => deleteBook(docID)}></button>
     </div>
   );
 }

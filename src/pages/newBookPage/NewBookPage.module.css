@@ -1,6 +1,6 @@
 .newCardFullPage{
   display: grid;
-  grid-template-rows: 150px 80px 280px;
+  grid-template-rows: 150px 40px 60px 280px;
   column-gap: 0;
   justify-items: center;
 }

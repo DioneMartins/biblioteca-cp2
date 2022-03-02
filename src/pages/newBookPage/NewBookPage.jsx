@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar } from '../../components';
+import { addBook } from '../../api/api';
 import styles from './NewBookPage.module.css';
 
 const {
@@ -27,8 +28,45 @@ export default function NewBookPage() {
   const [barcode, setBarcode] = useState('Barcode');
   const [icn, setICN] = useState('ICN');
   const [notes, setNotes] = useState('Notas');
-  const [quant, setQuant] = useState(0);
+  const [quant, setQuant] = useState(1);
   const [title, setTitle] = useState('Título');
+  const [hasError, setHasError] = useState(false);
+  const [barcodeArray, setBarcodeArray] = useState([]);
+  const [icnArray, setIcnArray] = useState([]);
+  const [notesArray, setNotesArray] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  function splitArrays() {
+    if (quant > 1) {
+      setBarcodeArray(barcode.split(';;'));
+      setIcnArray(icn.split(';;'));
+      setNotesArray(barcode.split(';;'));
+    } else if (quant === 1) {
+      barcodeArray.push(barcode);
+      icnArray.push(icn);
+      notesArray.push(notes);
+    } else {
+      setHasError(true);
+      setErrorMessage('Erro na quantidade');
+    }
+  }
+
+  async function sendBook() {
+    splitArrays();
+    if (!hasError) {
+      setBarcodeArray([]);
+      setIcnArray([]);
+      setNotesArray([]);
+      const add = await addBook(afn, aln, barcodeArray, icnArray, notesArray, quant, title);
+      if (add === 'Error') {
+        setHasError(true);
+        setErrorMessage('Erro para adicionar');
+      } else {
+        setHasError(true);
+        setErrorMessage(add);
+      }
+    }
+  }
 
   return (
     <>
@@ -46,6 +84,7 @@ export default function NewBookPage() {
           Caso haja mais de um livro, salve os diferentes "barcode", "ICN" e "notes" separados com
           ;;
         </p>
+        {hasError ? <p className={newCardWarning}>{errorMessage}</p> : <p></p>}
         <div>
           <div className={newCardInfoOuter}>
             <div className={newCardInfoInner}>
@@ -101,7 +140,7 @@ export default function NewBookPage() {
               <button
                 className={newCardButton}
                 onClick={(e) => {
-                  console.log('whaaaa');
+                  sendBook();
                 }}
               >
                 Enviar livro
