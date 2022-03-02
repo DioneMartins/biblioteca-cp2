@@ -1,0 +1,43 @@
+.loggedWrapper{
+  margin-top: 2%;
+  width: 100vw;
+  height: 60%;
+  display: grid;
+  grid-template-columns: 1fr, 2fr, 1fr;
+  grid-template-rows: 1fr, 2fr, 1fr;
+  justify-items: center;
+}
+
+.loggedWelcome{
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.loggedHello{
+  font-size: 20px;
+  color: var(--darkGrayBlue);
+  margin-right: 5px;
+}
+
+.loggedName{
+  font-size: 20px;
+  color: var(--darkGrayBlue);
+  font-weight: bold;
+}
+
+.loggedButton{
+  grid-column: 3;
+  grid-row: 1;
+  background-color: var(--navbarButton);
+  border: hidden;
+  width: 10vw;
+  padding: 5px 0px 5px 0px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}

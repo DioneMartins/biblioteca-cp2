@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Home, List, Login } from '../pages';
+import { Home, List, Login, SearchPage } from '../pages';
 
 export default function Router() {
   return (
@@ -8,6 +8,8 @@ export default function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/lista" element={<List />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/search/:search" element={<SearchPage />} />
+      <Route path="/search/" element={<SearchPage />} />
     </Routes>
   );
 }

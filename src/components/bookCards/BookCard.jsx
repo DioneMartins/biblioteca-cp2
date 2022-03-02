@@ -3,7 +3,7 @@ import { getBookList } from '../../api/api';
 import BookCardItem from './bookCardItem/BookCardItem';
 import styles from './BookCard.module.css';
 
-const { bookCardWrapper } = styles;
+const { bookCardWrapper, bookCardLoader } = styles;
 
 export default function BookCard() {
   const [bookListData, setBookListData] = useState([]);
@@ -26,21 +26,26 @@ export default function BookCard() {
 
   return (
     <div className={bookCardWrapper}>
-      {isLoading
-        ? 'Carregando'
-        : bookListData.map(({ afn, aln, notes, quant, title }, index) => {
-            return (
-              <BookCardItem
-                key={title}
-                firstName={afn}
-                lastName={aln}
-                notes={notes}
-                quant={quant}
-                title={title}
-                bookNumber={index}
-              />
-            );
-          })}
+      {isLoading ? (
+        <div className={bookCardLoader}>
+          <p>Carregando...</p>
+          <p>Pode demorar alguns segundos...</p>
+        </div>
+      ) : (
+        bookListData.map(({ afn, aln, notes, quant, title }, index) => {
+          return (
+            <BookCardItem
+              key={title}
+              firstName={afn}
+              lastName={aln}
+              notes={notes}
+              quant={quant}
+              title={title}
+              bookNumber={index}
+            />
+          );
+        })
+      )}
     </div>
   );
 }

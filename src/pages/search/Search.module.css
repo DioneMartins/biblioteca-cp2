@@ -1,0 +1,11 @@
+.searchBookWrapper{
+  width: fit-content;
+  margin: auto;
+  margin-top: 35px;
+}
+
+.searchLoader p{
+  color: var(--strongBlue);
+  text-align: center;
+  font-size: 26px;
+}
