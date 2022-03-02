@@ -71,8 +71,10 @@
 
 @media (min-width: 1080px) {
   .navbarSearchWrapper {
-    height: 25%;
-    width: 35%;
+    height: 26%;
+    width: 65%;
+    justify-content: flex-start;
+    
   }
   .navbarSearch{
     bottom: 7px;
@@ -80,8 +82,46 @@
   }
   .navbarSearchButton {
     top: 0;
+    border:hidden;
+    left: 65px;
+    width:12%;
   }
   .navbarSearchIcon {
-    width: 10%;
+    width: 5%;
   }
 }
+
+@media (min-width: 1080px) {
+  .navbarHome {
+    width: 50%;
+  }
+
+
+  .navbarButton {
+    background-color: #8DCBF1;
+    color: white;
+    width: 200px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0px 8px 0px 8px;
+}
+
+  .navbarButtonWrapper {
+    display: flex;
+    width: 95%;
+    flex-direction: row;
+    justify-content:flex-start;
+  }
+  .navbarWrapper {
+  background-color: #156CA2;
+  height: 3%;
+  width: 98vw;
+  display: grid;
+  padding: 2% 1vw 2% 1vw;
+  grid-template-columns: 1fr 5fr 5fr;
+  justify-items: center;
+  align-items: center;}
+}
+
