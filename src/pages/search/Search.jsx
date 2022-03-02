@@ -43,15 +43,16 @@ export default function Search() {
           </div>
         )}
         {searchedData &&
-          searchedData.map(({ afn, aln, notes, quant, title }, index) => {
+          searchedData.map((item, index) => {
+            const book = item.data();
             return (
               <BookCardItem
-                key={title}
-                firstName={afn}
-                lastName={aln}
-                notes={notes}
-                quant={quant}
-                title={title}
+                key={book.title}
+                firstName={book.afn}
+                lastName={book.aln}
+                notes={book.notes}
+                quant={book.quant}
+                title={book.title}
                 bookNumber={index}
               />
             );

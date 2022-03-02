@@ -32,7 +32,7 @@ export async function getBookList() {
     const q = query(collection(database, 'books'), orderBy('title'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      result.push(doc.data());
+      result.push(doc);
     });
   } catch (e) {
     result.push('Error fetching');
@@ -49,7 +49,7 @@ export async function getSearchedBooks(item) {
     for (const id of res) {
       const docRef = doc(database, 'books', id);
       const docSnap = await getDoc(docRef);
-      finalResult.push(docSnap.data());
+      finalResult.push(docSnap);
     }
   } catch (e) {
     finalResult.push('No books or error fetching');
