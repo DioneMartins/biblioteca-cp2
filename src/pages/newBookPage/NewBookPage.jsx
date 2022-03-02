@@ -41,10 +41,12 @@ export default function NewBookPage() {
       setBarcodeArray(barcode.split(';;'));
       setIcnArray(icn.split(';;'));
       setNotesArray(barcode.split(';;'));
+      setHasError(false);
     } else if (quant === 1) {
       barcodeArray.push(barcode);
       icnArray.push(icn);
       notesArray.push(notes);
+      setHasError(false);
     } else {
       setHasError(true);
       setErrorMessage('Erro na quantidade');
@@ -54,9 +56,6 @@ export default function NewBookPage() {
   async function sendBook() {
     splitArrays();
     if (!hasError) {
-      setBarcodeArray([]);
-      setIcnArray([]);
-      setNotesArray([]);
       const add = await addBook(afn, aln, barcodeArray, icnArray, notesArray, quant, title);
       if (add === 'Error') {
         setHasError(true);
@@ -65,6 +64,9 @@ export default function NewBookPage() {
         setHasError(true);
         setErrorMessage(add);
       }
+      setBarcodeArray([]);
+      setIcnArray([]);
+      setNotesArray([]);
     }
   }
 

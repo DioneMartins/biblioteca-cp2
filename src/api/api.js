@@ -168,32 +168,49 @@ export async function updateBook(id) {
 export async function addBook(afn, aln, barcode, icn, notes, quant, title) {
   let id = '';
   try {
-    const docRef = await addDoc(collection(database, 'books'), {
-      afn: afn,
-      aln: aln,
-      barcode: barcode,
-      icn: icn,
-      notes: notes,
-      quant: quant,
-      title: title,
-    });
-
-    let counter;
     const secondRef = doc(database, 'bookLinks', 'allBooks');
     const docSnap = await getDoc(secondRef);
-    counter = docSnap.data().count;
-    const author = `${afn} ${aln}`;
-    id = docRef.id;
 
-    await updateDoc(secondRef, {
-      count: counter++,
-      [`results.${counter}`]: {
-        authorName: author,
-        bookName: title,
-        bookID: id,
-      },
+    let searcherArray = [];
+    const res = docSnap.data().results;
+    Object.keys(res).forEach((key) => {
+      searcherArray.push(res[key].title);
     });
+    const fuse = new Fuse(searcherArray, {
+      threshold: 0,
+    });
+    const searchRes = fuse.search(title);
+
+    if (searchRes.length === 0) {
+      const docRef = await addDoc(collection(database, 'books'), {
+        afn: afn,
+        aln: aln,
+        barcode: barcode,
+        icn: icn,
+        notes: notes,
+        quant: quant,
+        title: title,
+      });
+
+      let counter;
+      let lastBook;
+      counter = docSnap.data().count;
+      lastBook = docSnap.data().lastBook;
+      const author = `${afn} ${aln}`;
+      id = docRef.id;
+
+      await updateDoc(secondRef, {
+        count: counter++,
+        lastBook: lastBook++,
+        [`results.${counter}`]: {
+          authorName: author,
+          bookName: title,
+          bookID: id,
+        },
+      });
+    } else id = 'Error';
   } catch (e) {
+    console.log(e);
     return 'Error';
   } finally {
     return id;
@@ -219,9 +236,14 @@ export async function deleteBook(id) {
   const searchRes = fuse.search(id);
 
   counter = docSnap.data().count;
+  let lastBook = docSnap.data().lastBook;
+  if (docSnap.data().lastBook === searchRes[0].refIndex) {
+    lastBook = lastBook--;
+  }
 
   await updateDoc(docRef, {
     count: counter--,
+    lastBook: lastBook,
     [`results.${searchRes[0].refIndex}`]: {},
   });
 }
