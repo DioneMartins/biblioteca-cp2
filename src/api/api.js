@@ -210,7 +210,6 @@ export async function addBook(afn, aln, barcode, icn, notes, quant, title) {
       });
     } else id = 'Error';
   } catch (e) {
-    console.log(e);
     return 'Error';
   } finally {
     return id;
