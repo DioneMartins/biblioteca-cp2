@@ -6,3 +6,5 @@ export { default as Unfinished } from './debugWorkInProgress/DebugWorkInProgress
 export { default as HomeCards } from './homeCards/HomeCards';
 export { default as LoginComponent } from './loginComponent/LoginComponent';
 export { default as Logged } from './logged/Logged';
+export { default as PagFooter } from './paginationFooter/PaginationFooter';
+export { default as PagHeader } from './paginationHeader/PaginationHeader';

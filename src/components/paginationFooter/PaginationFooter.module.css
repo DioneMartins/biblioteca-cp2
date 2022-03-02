@@ -1,0 +1,14 @@
+.pfWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.pfLeft {
+  display: block;
+  transform: scale(-1,1);
+  width: 20px;
+}
+
+.pfRight {
+  width: 20px;
+}
