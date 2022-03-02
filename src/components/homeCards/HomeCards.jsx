@@ -29,7 +29,7 @@ export default function HomeCards() {
   return (
     <>
       {isLoading && !failed && (
-        <div>
+        <div className={homeCardWrapper}>
           <p>Carregando</p>
         </div>
       )}

@@ -8,10 +8,13 @@ export default function HomeCardItem({ title, image, link, priority, index }) {
   return (
     <div className={cardWrapper}>
       <div className={imageWrapper}>
-        <img src={image} alt="icone" />
+        <a href={link}>
+          <img src={image} alt="icone" />
+        </a>
       </div>
-      <p className={cardTitle}>{title}</p>
-      <p className={link}></p>
+      <a className={cardTitle} href={link}>
+        {title}
+      </a>
     </div>
   );
 }
