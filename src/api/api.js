@@ -118,6 +118,19 @@ async function getBookLinks() {
   }
 }
 
+export async function getQuantity() {
+  let result = 0;
+  try {
+    const docRef = doc(database, 'bookLinks', 'allBooks');
+    const docSnap = await getDoc(docRef);
+    result = docSnap.data().count;
+  } catch (e) {
+    result = 0;
+  } finally {
+    return result;
+  }
+}
+
 export async function getUserName(userUID) {
   let result = '';
   try {
