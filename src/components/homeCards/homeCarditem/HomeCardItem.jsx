@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './HomeCardItem.module.css';
 
-const { cardWrapper, cardTitle } = styles;
+const { cardWrapper, cardTitle, imageWrapper } = styles;
 
 export default function HomeCardItem({ title, image, link, priority, index }) {
   return (
     <div className={cardWrapper}>
+      <div className={imageWrapper}>
+        <img src={image} alt="icone" />
+      </div>
       <p className={cardTitle}>{title}</p>
       <p className={link}></p>
     </div>
