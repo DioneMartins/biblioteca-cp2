@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, setPersistence } from 'firebase/auth';
 import { saveUser } from '../../api/login';
-import { getUserName } from '../../api/api';
 import styles from './LoginComponent.module.css';
 
 const {
@@ -22,6 +21,8 @@ export default function LoginComponent(props) {
 
   function handleLoginRequest() {
     const auth = getAuth();
+    if (keepLogin) setPersistence(auth, 'local');
+    else setPersistence(auth, 'session');
     signInWithEmailAndPassword(auth, userEmail, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -34,15 +35,8 @@ export default function LoginComponent(props) {
   }
 
   async function handleLogin(user) {
-    let userName = '';
-    try {
-      userName = await getUserName(user.uid);
-    } catch (e) {
-      userName = 'Error!';
-    } finally {
-      saveUser(user.uid, userName, keepLogin);
-      props.changer('Log in');
-    }
+    saveUser(user.uid, user.displayName, keepLogin);
+    props.changer('Log in');
   }
 
   function pickErrorMessage(codedError) {
