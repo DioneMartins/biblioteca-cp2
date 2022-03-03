@@ -44,6 +44,7 @@
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
+    "firebase-tools": "^10.2.2",
     "prettier": "^2.5.1"
   }
 }
