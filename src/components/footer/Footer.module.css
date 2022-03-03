@@ -1,0 +1,42 @@
+.footerWrapper {
+
+  background-color: var(--strongBlue);
+  width: 100vw;
+  height: 12vh;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+.footerGrid {
+
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr 1fr;
+
+
+}
+
+.footerLink{
+
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+
+}
+
+.footerGrid p{
+  font-size: 16px;
+}
+
+.footerOwner{
+
+  font-size: 19px;
+  font-weight: bold;
+
+}

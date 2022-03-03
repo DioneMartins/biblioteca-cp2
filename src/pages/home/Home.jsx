@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Navbar, HomeCards, Unfinished } from '../../components';
+import { Header, Navbar, HomeCards, Unfinished, Footer } from '../../components';
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
         respDev="Daniel"
         devOrder="1"
       />
+      <Footer />
     </div>
   );
 }
