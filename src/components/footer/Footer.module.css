@@ -3,7 +3,7 @@
   background-color: var(--strongBlue);
   width: 100vw;
   height: 12vh;
-  position: absolute;
+  position: relative;
   bottom: 0;
   color: white;
   display: flex;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Navbar, HomeCards, Unfinished, Footer } from '../../components';
+import { Header, Navbar, HomeCards, Footer } from '../../components';
 
 export default function Home() {
   return (
@@ -7,12 +7,6 @@ export default function Home() {
       <Header />
       <Navbar />
       <HomeCards />
-      <Unfinished
-        pageName="Futuro componente do rodapé."
-        message={['Direito de uso', 'Github', 'Email de contato', 'Autores']}
-        respDev="Daniel"
-        devOrder="1"
-      />
       <Footer />
     </div>
   );
