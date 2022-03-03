@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './HomeCardItem.module.css';
+import { Link } from 'react-router-dom';
 
-const { cardWrapper, cardTitle, imageWrapper } = styles;
+const { cardWrapper, cardTitle, imageWrapper, linkTitle } = styles;
 
-export default function HomeCardItem({ title, image, link, priority, index }) {
+export default function HomeCardItem({ title, image, link, priority, exibitionLink, index }) {
   return (
     <div className={cardWrapper}>
       <div className={imageWrapper}>
@@ -12,9 +13,12 @@ export default function HomeCardItem({ title, image, link, priority, index }) {
           <img src={image} alt="icone" />
         </a>
       </div>
-      <a className={cardTitle} href={link}>
-        {title}
-      </a>
+      <div>
+        <p className={cardTitle}>{title}</p>
+        <a className={linkTitle} href={link}>
+          {exibitionLink}
+        </a>
+      </div>
     </div>
   );
 }
@@ -25,6 +29,7 @@ HomeCardItem.propTypes = {
   link: PropTypes.string.isRequired,
   priority: PropTypes.number,
   index: PropTypes.number,
+  exibitionLink: PropTypes.string.isRequired,
 };
 
 HomeCardItem.defaultProps = {
