@@ -9,21 +9,51 @@ const { bookCardWrapper, bookCardLoader } = styles;
 export default function BookCard() {
   const [bookListData, setBookListData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const [lastID, setLastID] = useState('');
+  const [backID, setBackID] = useState(['']);
+  const [op, setOp] = useState('forward');
+  const [isLast, setIsLast] = useState(false);
 
   useEffect(() => {
     loadBooks();
-  }, []);
+  }, [page]);
 
   async function loadBooks() {
+    const prevArray = backID;
     try {
-      const bookArray = await getBookList();
-      setBookListData(bookArray);
+      getBookList(perPage, lastID, op).then((bookArray) => {
+        if (bookArray.length < perPage) setIsLast(true);
+        else setIsLast(false);
+        setBackID(prevArray);
+        backID.push(bookArray[0]);
+        setBookListData(bookArray);
+        setLoading(false);
+      });
     } catch (e) {
       setBookListData(null);
-    } finally {
       setLoading(false);
     }
   }
+
+  const changePage = (value) => {
+    if (value === 'forward') {
+      if (!isLast) {
+        const lastViewed = bookListData.length - 1;
+        setLastID(bookListData[lastViewed]);
+        setLoading(true);
+        setOp('forward');
+        setPage(page + 1);
+      }
+    }
+    if (value === 'back' && page > 1) {
+      setLastID(backID[page - 1]);
+      setLoading(true);
+      setOp('back');
+      setPage(page - 1);
+    }
+  };
 
   return (
     <>
@@ -52,7 +82,7 @@ export default function BookCard() {
           })
         )}
       </div>
-      <PagFooter />
+      <PagFooter changer={changePage} />
     </>
   );
 }

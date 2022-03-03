@@ -10,6 +10,9 @@ import {
   updateDoc,
   addDoc,
   deleteDoc,
+  limit,
+  startAfter,
+  startAt,
 } from 'firebase/firestore';
 import { updateProfile, getAuth } from 'firebase/auth';
 import Fuse from 'fuse.js';
@@ -28,10 +31,20 @@ const app = initializeApp(firebaseConfig);
 
 const database = getFirestore(app);
 
-export async function getBookList() {
+export async function getBookList(perPage, lastID, op) {
   const result = [];
   try {
-    const q = query(collection(database, 'books'), orderBy('title'));
+    let q;
+    if (op === 'forward') {
+      q = query(
+        collection(database, 'books'),
+        orderBy('title'),
+        startAfter(lastID),
+        limit(perPage),
+      );
+    } else {
+      q = query(collection(database, 'books'), orderBy('title'), startAt(lastID), limit(perPage));
+    }
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       result.push(doc);
