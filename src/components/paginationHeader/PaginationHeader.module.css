@@ -25,5 +25,19 @@
   border: none;
   margin-left: 10px;
   border-radius: 8px;
-  padding: 1px 1px 1px 3px;
+  padding: 1px;
+  color: var(--strongBlue);
+  font-weight: bold;
+}
+
+.phButton {
+  margin-left: 10px;
+  font-size: 14px;
+  padding: 2px;
+  background-color: var(--whiteBlue);
+  border: none;
+  border-radius: 8px;
+  color: var(--strongBlue);
+  font-weight: bold;
+  cursor: pointer;
 }

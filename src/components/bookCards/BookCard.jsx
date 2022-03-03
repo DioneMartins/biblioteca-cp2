@@ -18,7 +18,7 @@ export default function BookCard() {
 
   useEffect(() => {
     loadBooks();
-  }, [page]);
+  }, [page, perPage]);
 
   async function loadBooks() {
     const prevArray = backID;
@@ -55,9 +55,13 @@ export default function BookCard() {
     }
   };
 
+  const changeAmount = (value) => {
+    setPerPage(value);
+  };
+
   return (
     <>
-      <PagHeader />
+      <PagHeader changer={changeAmount} />
       <div className={bookCardWrapper}>
         {isLoading ? (
           <div className={bookCardLoader}>
