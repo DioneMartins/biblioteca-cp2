@@ -1,5 +1,5 @@
 .navbarWrapper {
-  background-color: #156CA2;
+  background-color: var(--strongBlue);
   height: 5%;
   width: 98vw;
   display: grid;

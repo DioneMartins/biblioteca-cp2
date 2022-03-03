@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, LoginComponent, Logged } from '../../components';
+import { Navbar, LoginComponent, Logged, Footer } from '../../components';
 import { checkIfUserExists } from '../../api/login';
 
 export default function Login() {
@@ -22,6 +22,7 @@ export default function Login() {
       ) : (
         <LoginComponent changer={receivedUpdate} />
       )}
+      <Footer />
     </div>
   );
 }

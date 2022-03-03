@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, BookCardItem } from '../../components';
+import { Navbar, BookCardItem, Footer } from '../../components';
 import { getSearchedBooks } from '../../api/api';
 import { useLocation } from 'react-router-dom';
 import styles from './Search.module.css';
@@ -60,6 +60,7 @@ export default function Search() {
           })}
         {!loading && !searchedData && <BookCardItem />}
       </div>
+      <Footer />
     </div>
   );
 }

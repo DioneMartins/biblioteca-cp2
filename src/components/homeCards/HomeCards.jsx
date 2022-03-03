@@ -40,7 +40,7 @@ export default function HomeCards() {
       <div className={homeCardWrapper}>
         {!isLoading && !failed && (
           <>
-            {initCardsData.map(({ cardTitle, img, link, priority }, index) => {
+            {initCardsData.map(({ cardTitle, img, link, priority, exibitionLink }, index) => {
               return (
                 <HomeCardsItem
                   key={index}
@@ -49,6 +49,7 @@ export default function HomeCards() {
                   link={link}
                   priority={priority}
                   index={index}
+                  exibitionLink={exibitionLink}
                 />
               );
             })}
