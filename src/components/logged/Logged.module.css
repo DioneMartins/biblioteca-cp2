@@ -74,14 +74,19 @@
   font-weight: 400;
 }
 
-@media(min-width: 1080px){
-  .loggedWrapper{
-    width: 94vw;
-    margin: 2% 3vw 0 3vw;
-    height: 60vh;
-    display: grid;
-    grid-template-columns: 2fr 3fr 2fr;
-    grid-template-rows: 2fr 1fr 2fr 2fr;
-    justify-items: center;
+.loggedWrapper{
+  width: 94vw;
+  margin: 2% 3vw 0 3vw;
+  height: 60vh;
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+  grid-template-rows: 2fr 1fr 2fr 2fr;
+  justify-items: center;
+}
+
+@media(max-width: 1080px){
+  .loggedWrapper button, .loggedAddBookWrapper{
+    width: 100px;
+    text-align: center;
   }
 }

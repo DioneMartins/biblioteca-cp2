@@ -1,5 +1,4 @@
 .footerWrapper {
-
   background-color: var(--strongBlue);
   width: 100vw;
   height: 12vh;
@@ -10,24 +9,18 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-
 }
 
 .footerGrid {
-
-display: grid;
-grid-template-columns: 1fr 1fr;
-grid-template-rows: 1fr 1fr;
-
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .footerLink{
-
   font-size: 16px;
   text-decoration: none;
   color: white;
-
 }
 
 .footerGrid p{
@@ -35,8 +28,25 @@ grid-template-rows: 1fr 1fr;
 }
 
 .footerOwner{
-
   font-size: 19px;
   font-weight: bold;
+}
 
+@media (max-width: 1080px){
+  .footerWrapper {
+    height: 120px;
+    text-align: center;
+  }
+  .footerGrid {
+    display: flex;
+    flex-direction: column;
+  }
+  .footerGrid p, .footerLink{
+    font-size: 12px;
+    text-overflow: wrap;
+  }
+  .footerOwner{
+    font-size: 14px;
+    text-overflow: wrap;
+  }
 }

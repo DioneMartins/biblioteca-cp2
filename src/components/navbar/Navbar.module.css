@@ -7,6 +7,8 @@
   grid-template-columns: 1fr 5fr 6fr;
   justify-items: center;
   align-items: center;
+  position: sticky;
+  top: 0;
 }
 
 .navbarHome {
@@ -115,13 +117,14 @@
     justify-content:flex-start;
   }
   .navbarWrapper {
-  background-color: #156CA2;
-  height: 3%;
-  width: 98vw;
-  display: grid;
-  padding: 2% 1vw 2% 1vw;
-  grid-template-columns: 1fr 5fr 5fr;
-  justify-items: center;
-  align-items: center;}
+    background-color: #156CA2;
+    height: 3%;
+    width: 98vw;
+    display: grid;
+    padding: 2% 1vw 2% 1vw;
+    grid-template-columns: 1fr 5fr 5fr;
+    justify-items: center;
+    align-items: center;
+  }
 }
 
