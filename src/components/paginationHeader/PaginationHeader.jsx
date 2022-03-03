@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import RandomSVG from '../../assets/Font_Awesome_5_solid_random.svg';
 import styles from './PaginationHeader.module.css';
 
-const { phWrapper, phRandom, phLabel, phInput, phButton } = styles;
+const { phWrapper, phLabel, phInput, phButton } = styles;
 export default function PaginationHeader(props) {
   const [quant, setQuant] = useState(10);
 
@@ -12,7 +11,6 @@ export default function PaginationHeader(props) {
 
   return (
     <div className={phWrapper}>
-      <img className={phRandom} src={RandomSVG} alt="Aleatorizar" />
       <div>
         <label className={phLabel} htmlFor="number">
           Número de cards
