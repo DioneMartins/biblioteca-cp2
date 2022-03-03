@@ -1,0 +1,21 @@
+.pfWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.pfLeft {
+  display: block;
+  transform: scale(-1,1);
+  width: 30px;
+}
+
+.pfRight {
+  width: 30px;
+  margin-top: 3px;
+  margin-left: 1px;
+}

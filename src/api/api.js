@@ -10,6 +10,9 @@ import {
   updateDoc,
   addDoc,
   deleteDoc,
+  limit,
+  startAfter,
+  startAt,
 } from 'firebase/firestore';
 import { updateProfile, getAuth } from 'firebase/auth';
 import Fuse from 'fuse.js';
@@ -28,10 +31,20 @@ const app = initializeApp(firebaseConfig);
 
 const database = getFirestore(app);
 
-export async function getBookList() {
+export async function getBookList(perPage, lastID, op) {
   const result = [];
   try {
-    const q = query(collection(database, 'books'), orderBy('title'));
+    let q;
+    if (op === 'forward') {
+      q = query(
+        collection(database, 'books'),
+        orderBy('title'),
+        startAfter(lastID),
+        limit(perPage),
+      );
+    } else {
+      q = query(collection(database, 'books'), orderBy('title'), startAt(lastID), limit(perPage));
+    }
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       result.push(doc);
@@ -113,6 +126,19 @@ async function getBookLinks() {
     result = docSnap.data().results;
   } catch (e) {
     result = e;
+  } finally {
+    return result;
+  }
+}
+
+export async function getQuantity() {
+  let result = 0;
+  try {
+    const docRef = doc(database, 'bookLinks', 'allBooks');
+    const docSnap = await getDoc(docRef);
+    result = docSnap.data().count;
+  } catch (e) {
+    result = 0;
   } finally {
     return result;
   }
