@@ -4,7 +4,7 @@ import { getSearchedBooks } from '../../api/api';
 import { useLocation } from 'react-router-dom';
 import styles from './Search.module.css';
 
-const { searchBookWrapper, searchLoader } = styles;
+const { searchBookWrapper, searchBookWarning, searchBookParagraph, searchLoader } = styles;
 export default function Search() {
   const [searchedData, setSearchedData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,6 +36,14 @@ export default function Search() {
     <div>
       <Navbar />
       <div className={searchBookWrapper}>
+        <div className={searchBookWarning}>
+          <p className={searchBookParagraph}>
+            A web biblioteca ainda não tem acesso ao acervo completo.
+          </p>
+          <p className={searchBookParagraph}>
+            Livros que não estão ainda aqui podem estar disponíveis na biblioteca.
+          </p>
+        </div>
         {loading && (
           <div className={searchLoader}>
             <p>Carregando...</p>

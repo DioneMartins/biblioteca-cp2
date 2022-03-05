@@ -3,3 +3,21 @@
 
 # V0.0.2
 --- Added Router
+
+# V0.0.3
+--- Added login system
+
+# V0.0.4
+--- Added search system
+
+# V0.0.5
+--- Added admin view
+
+# V0.0.6
+--- Added home cards and footer
+
+# V0.0.7
+--- Added pagination
+
+# V0.1.0
+--- Finished mobile and desktop view and added warning

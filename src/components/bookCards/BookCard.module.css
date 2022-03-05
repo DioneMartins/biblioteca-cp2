@@ -6,6 +6,17 @@
   align-items: center;
 }
 
+.bookCardWarning {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.bookCardParagraph {
+  font-size: 20px;
+  color: var(--darkGrayBlue);
+  font-weight: bold;
+}
+
 .bookCardLoader p{
   color: var(--strongBlue);
   text-align: center;

@@ -4,7 +4,7 @@ import BookCardItem from './bookCardItem/BookCardItem';
 import { PagHeader, PagFooter } from '..';
 import styles from './BookCard.module.css';
 
-const { bookCardWrapper, bookCardLoader } = styles;
+const { bookCardWrapper, bookCardWarning, bookCardParagraph, bookCardLoader } = styles;
 
 export default function BookCard() {
   const [bookListData, setBookListData] = useState([]);
@@ -63,6 +63,14 @@ export default function BookCard() {
     <>
       <PagHeader changer={changeAmount} />
       <div className={bookCardWrapper}>
+        <div className={bookCardWarning}>
+          <p className={bookCardParagraph}>
+            A web biblioteca ainda não tem acesso ao acervo completo.
+          </p>
+          <p className={bookCardParagraph}>
+            Livros que não estão ainda aqui podem estar disponíveis na biblioteca.
+          </p>
+        </div>
         {isLoading ? (
           <div className={bookCardLoader}>
             <p>Carregando...</p>

@@ -4,6 +4,17 @@
   margin-top: 35px;
 }
 
+.searchBookWarning {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.searchBookParagraph {
+  font-size: 20px;
+  color: var(--darkGrayBlue);
+  font-weight: bold;
+}
+
 .searchLoader p{
   color: var(--strongBlue);
   text-align: center;
