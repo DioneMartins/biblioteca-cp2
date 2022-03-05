@@ -10,7 +10,8 @@ export default function Search() {
   const [loading, setLoading] = useState(true);
   const link = useLocation();
   useEffect(() => {
-    const srch = link.pathname.substring(8);
+    const firstLink = link.pathname.substring(8);
+    var srch = firstLink.replace('%20', ' ');
     goToLoading();
     loadSearchBooks(srch);
   }, [link]);
